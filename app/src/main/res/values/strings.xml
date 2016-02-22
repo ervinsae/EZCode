@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">LitePal</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="decline">decline</string>
+    <string name="accept">accept</string>
+    <string name="author_name">Ervin</string>
+    <string name="welcome">Hello Welcome</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_retrofit">Retrofit</string>
+    <string name="menu_profile">Profile</string>
+    <string name="menu_Mode">Mode</string>
+    <string name="menu_unknown">待定</string>
+    <string name="menu_setting">Setting</string>
+
+</resources>

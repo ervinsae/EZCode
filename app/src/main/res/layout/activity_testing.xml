@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <include layout="@layout/toolbar_actionbar"></include>
+        <View style="@style/SeparationLine" />
+
+        <TextView
+            android:id="@+id/ref_get"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="Retrofit接口Get测试" />
+
+        <View style="@style/SeparationLine" />
+
+
+        <TextView
+            android:id="@+id/ref_get2"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="Retrofit2.0接口Get测试" />
+
+        <View style="@style/SeparationLine" />
+
+        <TextView
+            android:id="@+id/ref_login"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="Login测试" />
+
+        <View style="@style/SeparationLine" />
+
+        <TextView
+            android:id="@+id/ref_post"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="Post测试" />
+
+        <View style="@style/SeparationLine" />
+
+        <TextView
+            android:id="@+id/test_json"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="Json测试" />
+
+        <View style="@style/SeparationLine" />
+
+        <TextView
+            android:id="@+id/test_notification"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="NotificationService" />
+
+        <View style="@style/SeparationLine" />
+
+        <TextView
+            android:id="@+id/send_friendsbadstate"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="发送好友不良状态" />
+
+        <View style="@style/SeparationLine" />
+
+        <TextView
+            android:id="@+id/send_sportdata"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="获取运动数据" />
+
+        <View style="@style/SeparationLine" />
+
+        <TextView
+            android:id="@+id/send_sportdatasuccess"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="同步运动数据成功" />
+
+        <View style="@style/SeparationLine" />
+
+        <TextView
+            android:id="@+id/send_sleepdata"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="获取睡眠数据" />
+
+        <View style="@style/SeparationLine" />
+
+        <TextView
+            android:id="@+id/send_sleepdatasuccess"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="获取睡眠数据成功" />
+
+        <View style="@style/SeparationLine" />
+
+        <TextView
+            android:id="@+id/send_friendpic"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="发送好友头像" />
+
+        <View style="@style/SeparationLine" />
+
+        <TextView
+            android:id="@+id/test_db"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="测试数据库" />
+
+        <View style="@style/SeparationLine" />
+    </LinearLayout>
+</ScrollView>
+

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ScrimInsetsView">
+        <attr name="appInsetForeground" format="reference|color" />
+    </declare-styleable>
+
+    <declare-styleable name="BaseTheme">
+        <attr name="actionBarIconColor" format="color" />
+        <attr name="actionBarInsetStart" format="dimension" />
+        <attr name="spinnerBarInsetStart" format="dimension" />
+        <attr name="popupItemBackground" format="reference" />
+        <attr name="photoItemForeground" format="reference" />
+        <attr name="photoItemForegroundBorderless" format="reference" />
+        <attr name="imageItemBackground" format="reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="BezelImageView">
+        <attr name="maskDrawable" format="reference" />
+        <attr name="borderDrawable" format="reference" />
+        <attr name="desaturateOnPress" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="CircleImageView">
+        <attr name="circle_width" format="dimension" />
+        <attr name="circle_color" format="color" />
+        <attr name="circle_overlay" format="boolean" />
+    </declare-styleable>
+
+    <!-- card-->
+    <declare-styleable name="DragCardsView">
+        <attr name="SwipeFlingStyle" format="reference" />
+        <attr name="rotation_degrees" format="float" />
+        <attr name="min_adapter_stack" format="integer" />
+        <attr name="max_visible" format="integer" />
+        <attr name="cards_shift" format="integer" />
+        <attr name="cards_width" format="dimension" />
+        <attr name="cards_height" format="dimension" />
+    </declare-styleable>
+</resources>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_white"
+    android:orientation="vertical">
+
+    <include layout="@layout/toolbar_actionbar"></include>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.ervin.litepal.Ui.widget.DragCardsView
+            android:id="@+id/dragCardsView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_centerInParent="true"
+            android:background="#00ffffff"
+            app:cards_height="330dp"
+            app:cards_shift="10"
+            app:cards_width="300dp"
+            app:max_visible="4"
+            app:rotation_degrees="15">
+        </com.ervin.litepal.Ui.widget.DragCardsView>
+
+    </RelativeLayout>
+
+
+</LinearLayout>

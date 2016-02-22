@@ -1,0 +1,65 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@color/background">
+    <include layout="@layout/toolbar_actionbar"></include>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="168dp"
+        android:paddingBottom="16dp"
+        android:layout_marginBottom="?actionBarSize"
+        android:clipToPadding="false"
+        android:scrollbarStyle="outsideOverlay">
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/welcome_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:paddingTop="8dp"
+            android:elevation="10dp"
+            android:background="@color/app_white" />
+
+    </ScrollView>
+
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@color/app_white"
+        android:elevation="6dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:gravity="end">
+
+            <Button
+                android:id="@+id/button_decline"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/decline"
+                android:textAppearance="@style/TextAppearance.AppCompat.Button"
+                android:textColor="@color/app_body_text_2"
+                style="?android:borderlessButtonStyle" />
+
+            <Button
+                android:id="@+id/btn"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/accept"
+                android:textAppearance="@style/TextAppearance.AppCompat.Button"
+                android:textColor="@color/app_primary_accent"
+                style="?android:borderlessButtonStyle" />
+        </LinearLayout>
+    </FrameLayout>
+</FrameLayout>
