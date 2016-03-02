@@ -33,6 +33,9 @@ import butterknife.ButterKnife;
 import retrofit.Callback;
 import retrofit.Response;
 import retrofit.Retrofit;
+import rx.Observable;
+import rx.Observer;
+import rx.subjects.PublishSubject;
 
 /**
  * Created by Ervin on 2015/11/19.
@@ -51,6 +54,8 @@ public class RetrofitTest extends BaseActivity implements View.OnClickListener{
     TextView test_json;
     @Bind(R.id.test_notification)
     TextView test_notity;
+    @Bind(R.id.test_publishsubject)
+    TextView test_publishSuject;
 
 
     private NotificationReceiver nReceiver;
@@ -67,6 +72,7 @@ public class RetrofitTest extends BaseActivity implements View.OnClickListener{
         tv_ref_post.setOnClickListener(this);
         test_json.setOnClickListener(this);
         test_notity.setOnClickListener(this);
+        test_publishSuject.setOnClickListener(this);
 
         nReceiver = new NotificationReceiver();
         IntentFilter filter = new IntentFilter();
@@ -185,6 +191,10 @@ public class RetrofitTest extends BaseActivity implements View.OnClickListener{
                 Intent intent = new Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS);
                 startActivity(intent);
                 break;
+            case R.id.test_publishsubject:
+                //publishSubjectExample();
+                RxJavaExample();
+                break;
         }
     }
 
@@ -203,4 +213,53 @@ public class RetrofitTest extends BaseActivity implements View.OnClickListener{
         super.onDestroy();
         unregisterReceiver(nReceiver);
     }
+
+    //Subject
+    public void publishSubjectExample(){
+        PublishSubject<String> stringPublishSubject = PublishSubject.create();
+        stringPublishSubject.subscribe(new Observer<String>() {
+            @Override
+            public void onCompleted() {
+                Toast.makeText(RetrofitTest.this,"Observable completed",Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Toast.makeText(RetrofitTest.this,"Something wrong happened",Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onNext(String s) {
+                Toast.makeText(RetrofitTest.this,s,Toast.LENGTH_LONG).show();
+            }
+        });
+        stringPublishSubject.onNext("Hello Rxandroid World");
+    }
+
+    /**
+     * RxJava 有四个基本概念：Observable (可观察者，即被观察者)、 Observer (观察者)、 subscribe (订阅)、事件。
+     * Observable 和 Observer 通过 subscribe() 方法实现订阅关系，从而 Observable 可以在需要的时候发出事件来通知 Observer。
+     *
+     * 当观察到Observable发生变化时，Observer是需要去执行的（所以有一些回调函数之类的）,
+     */
+    public void RxJavaExample(){
+        String[] words = {"Hello", "Rxandroid", "World"};
+        Observable.from(words).subscribe(new Observer<String>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(String s) {
+                Toast.makeText(RetrofitTest.this,s,Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
 }

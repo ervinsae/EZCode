@@ -16,6 +16,19 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:src="@mipmap/io_mark_social" />
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/home_fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/home_fragment_app_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:padding="15dp">
+
+            </android.support.v7.widget.RecyclerView>
+        </android.support.v4.widget.SwipeRefreshLayout>
     </FrameLayout>
 
 
