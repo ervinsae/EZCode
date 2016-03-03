@@ -50,8 +50,13 @@ public class HomeFragments extends Fragment implements SwipeRefreshLayout.OnRefr
         View rootView  = inflater.inflate(R.layout.fragment_home,container,false);
         ButterKnife.bind(this,rootView);
         initView(rootView);
-        initData();
         return rootView;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        initData();
     }
 
     private void initData() {
@@ -89,7 +94,7 @@ public class HomeFragments extends Fragment implements SwipeRefreshLayout.OnRefr
                             adapter = new AppListAdapter(appInfos);
                             appListView.setAdapter(adapter);
                         }else{
-                            //adapter.addApplications(appInfos);
+                            adapter.addApplications(appInfos);
                             adapter.notifyDataSetChanged();
                         }
                         swipeLayout.setRefreshing(false);

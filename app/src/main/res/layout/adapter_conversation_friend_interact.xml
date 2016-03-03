@@ -4,7 +4,7 @@
     android:layout_height="80dp"
     android:orientation="horizontal"
     android:background="@drawable/round_rectangle_shape"
-    android:padding="8dp">
+    android:layout_margin="8dp">
 
     <RelativeLayout
         android:id="@+id/layout_avatar"
@@ -16,13 +16,12 @@
             android:layout_width="55dp"
             android:layout_height="55dp"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
             android:src="@mipmap/defalut_avatar" />
 
         <TextView
             android:id="@+id/tv_name"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="match_parent"
             android:layout_toRightOf="@id/iv_avatar"
             android:layout_marginLeft="20dip"
             android:gravity="center|left"
