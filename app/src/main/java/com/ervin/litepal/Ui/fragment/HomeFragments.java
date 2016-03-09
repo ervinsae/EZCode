@@ -89,14 +89,18 @@ public class HomeFragments extends Fragment implements SwipeRefreshLayout.OnRefr
 
                     @Override
                     public void onNext(List<AppInfo> appInfos) {
+                        Log.d("ervin","----------onNext");
+                        if(appInfos == null){
+                            Log.d("ervin","----------APPInfo is null");
+                        }
                         appListView.setVisibility(View.VISIBLE);
                         if(adapter == null){
                             adapter = new AppListAdapter(appInfos);
-                            appListView.setAdapter(adapter);
                         }else{
                             adapter.addApplications(appInfos);
-                            adapter.notifyDataSetChanged();
+                            //adapter.notifyDataSetChanged();
                         }
+                        appListView.setAdapter(adapter);
                         swipeLayout.setRefreshing(false);
                     }
                 });
