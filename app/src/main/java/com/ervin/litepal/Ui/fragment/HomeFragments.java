@@ -9,12 +9,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ervin.litepal.Model.AppInfo;
 import com.ervin.litepal.R;
-import com.ervin.litepal.Ui.widget.CircleImageView;
 import com.ervin.litepal.Utils.AppinfoUtils;
 
 import java.util.List;
@@ -123,6 +123,14 @@ public class HomeFragments extends Fragment implements SwipeRefreshLayout.OnRefr
        });
     }
 
+    /**
+     * combine getApps() and refreshTheList() with Retrolambda
+     */
+    /*public void getData(){
+        Observable.create()
+    }*/
+
+
     @Override
     public void onRefresh() {
         Log.i("ervin","刷新了");
@@ -164,7 +172,7 @@ public class HomeFragments extends Fragment implements SwipeRefreshLayout.OnRefr
 
         class ViewHolder extends RecyclerView.ViewHolder{
             @Bind(R.id.iv_avatar)
-            CircleImageView icon;
+            ImageView icon;
             @Bind(R.id.tv_name)
             TextView name;
             public ViewHolder(View itemView) {
