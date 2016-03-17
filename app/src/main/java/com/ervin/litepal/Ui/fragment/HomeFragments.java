@@ -106,7 +106,7 @@ public class HomeFragments extends Fragment implements SwipeRefreshLayout.OnRefr
                 });
     }
 
-    private Observable<AppInfo> getApps() {
+    private Observable<AppInfo> getApps() { //被观察者
 
        return Observable.create(new Observable.OnSubscribe<AppInfo>() {
            @Override

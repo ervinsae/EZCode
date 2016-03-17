@@ -117,6 +117,10 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener,L
                 Intent intent2  = new Intent(HomeActivity.this,SettingActivity.class);
                 startActivity(intent2);
                 break;
+            case 5:
+                Intent intent3 = new Intent(HomeActivity.this,AboutActivity.class);
+                startActivity(intent3);
+                break;
         }
     }
 

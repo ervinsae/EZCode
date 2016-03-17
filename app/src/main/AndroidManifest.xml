@@ -23,6 +23,7 @@
         <activity android:name=".Ui.HomeActivity"></activity>
         <activity android:name=".Ui.CategoryActivity"></activity>
         <activity android:name=".Ui.SettingActivity"></activity>
+        <activity android:name=".Ui.AboutActivity"></activity>
 
         <service android:name="com.ervin.litepal.Api.NLService"
             android:label="@string/app_name"
