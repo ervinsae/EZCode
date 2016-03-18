@@ -1,9 +1,9 @@
 package com.ervin.litepal;
 
-import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -37,7 +37,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         tvTitle = (TextView) findViewById(R.id.toolbar_center_title);
         tvTitle.setText(R.string.welcome);
         fragment = new WelcomeFragments();
-        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(R.id.welcome_content, fragment);
         fragmentTransaction.commit();
     }

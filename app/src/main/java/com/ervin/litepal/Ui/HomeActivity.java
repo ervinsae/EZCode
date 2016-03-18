@@ -1,10 +1,11 @@
 package com.ervin.litepal.Ui;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.View;
@@ -21,6 +22,7 @@ import com.ervin.litepal.Ui.fragment.AboutFragment;
 import com.ervin.litepal.Ui.fragment.FragmentCallback;
 import com.ervin.litepal.Ui.fragment.HomeFragment;
 import com.ervin.litepal.Ui.fragment.ModeFragment;
+import com.ervin.litepal.Ui.fragment.SettingFragment;
 import com.ervin.litepal.Utils.Md5;
 
 import java.util.HashMap;
@@ -48,6 +50,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener,L
     private HomeFragment homeFragment;
     private ModeFragment modeFragment;
     private AboutFragment aboutFragment;
+    private SettingFragment settingFragment;
 
     private int imageIcon[] = {R.mipmap.ic_navview_explore,R.mipmap.ic_navview_map,R.mipmap.ic_navview_my_schedule,
     R.mipmap.ic_navview_play_circle_fill,R.mipmap.ic_navview_social,R.mipmap.ic_navview_settings};
@@ -64,10 +67,11 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener,L
         setContentView(R.layout.activity_drawer_main);
 
         initView();
-        fragmentManager = getFragmentManager();
+        fragmentManager = getSupportFragmentManager();
         homeFragment = new HomeFragment();
         modeFragment = new ModeFragment();
         aboutFragment = new AboutFragment();
+        settingFragment = new SettingFragment();
 
         mContent = homeFragment; // 默认Fragment
         fragmentManager.beginTransaction().replace(R.id.content_main, mContent).commit();
@@ -119,6 +123,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener,L
             case 4:
                 Intent intent2  = new Intent(HomeActivity.this,SettingActivity.class);
                 startActivity(intent2);
+                //switchFragment(position,settingFragment);
                 break;
             case 5:
                 /*Intent intent3 = new Intent(HomeActivity.this,AboutActivity.class);
