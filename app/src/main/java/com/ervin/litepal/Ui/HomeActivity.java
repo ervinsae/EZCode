@@ -17,9 +17,10 @@ import android.widget.TextView;
 import com.ervin.litepal.Api.LoginApi;
 import com.ervin.litepal.Model.LoginData;
 import com.ervin.litepal.R;
+import com.ervin.litepal.Ui.fragment.AboutFragment;
 import com.ervin.litepal.Ui.fragment.FragmentCallback;
-import com.ervin.litepal.Ui.fragment.HomeFragments;
-import com.ervin.litepal.Ui.fragment.ModeFragments;
+import com.ervin.litepal.Ui.fragment.HomeFragment;
+import com.ervin.litepal.Ui.fragment.ModeFragment;
 import com.ervin.litepal.Utils.Md5;
 
 import java.util.HashMap;
@@ -44,14 +45,15 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener,L
 
     private FragmentManager fragmentManager;
     private Fragment mContent;
-    private HomeFragments homeFragment;
-    private ModeFragments modeFragment;
+    private HomeFragment homeFragment;
+    private ModeFragment modeFragment;
+    private AboutFragment aboutFragment;
 
     private int imageIcon[] = {R.mipmap.ic_navview_explore,R.mipmap.ic_navview_map,R.mipmap.ic_navview_my_schedule,
     R.mipmap.ic_navview_play_circle_fill,R.mipmap.ic_navview_social,R.mipmap.ic_navview_settings};
 
     private int imageStr[] = {R.string.menu_home,R.string.menu_Mode,R.string.menu_retrofit,
-    R.string.menu_profile,R.string.menu_setting,R.string.menu_unknown};
+    R.string.menu_profile,R.string.menu_setting,R.string.menu_about};
 
     public HomeActivity getActivity(){
         return this;
@@ -63,8 +65,9 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener,L
 
         initView();
         fragmentManager = getFragmentManager();
-        homeFragment = new HomeFragments();
-        modeFragment = new ModeFragments();
+        homeFragment = new HomeFragment();
+        modeFragment = new ModeFragment();
+        aboutFragment = new AboutFragment();
 
         mContent = homeFragment; // 默认Fragment
         fragmentManager.beginTransaction().replace(R.id.content_main, mContent).commit();
@@ -118,8 +121,9 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener,L
                 startActivity(intent2);
                 break;
             case 5:
-                Intent intent3 = new Intent(HomeActivity.this,AboutActivity.class);
-                startActivity(intent3);
+                /*Intent intent3 = new Intent(HomeActivity.this,AboutActivity.class);
+                startActivity(intent3);*/
+                switchFragment(position,aboutFragment);
                 break;
         }
     }

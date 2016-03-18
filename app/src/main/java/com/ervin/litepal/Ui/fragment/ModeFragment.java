@@ -25,7 +25,7 @@ import java.util.ArrayList;
 /**
  * Created by Ervin on 2015/12/18.
  */
-public class ModeFragments extends Fragment implements View.OnClickListener{
+public class ModeFragment extends Fragment implements View.OnClickListener{
 
     private ImageView menuIcon;
     private TextView tvTitle;
@@ -43,7 +43,7 @@ public class ModeFragments extends Fragment implements View.OnClickListener{
     };
 
 
-    public ModeFragments(){
+    public ModeFragment(){
 
     }
 

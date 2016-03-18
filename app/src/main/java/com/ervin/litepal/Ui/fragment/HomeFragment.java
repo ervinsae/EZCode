@@ -31,7 +31,7 @@ import rx.schedulers.Schedulers;
 /**
  * Created by Ervin on 2015/12/18.
  */
-public class HomeFragments extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
+public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
 
     @Bind(R.id.home_fragment_app_list)
     RecyclerView appListView;
@@ -40,7 +40,7 @@ public class HomeFragments extends Fragment implements SwipeRefreshLayout.OnRefr
     private TextView tvTitle;
 
     AppListAdapter adapter;
-    public HomeFragments(){
+    public HomeFragment(){
 
     }
 
