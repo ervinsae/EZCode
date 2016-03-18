@@ -78,11 +78,19 @@
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <android.support.design.widget.FloatingActionButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end|bottom"
-                android:layout_margin="20dp" />
+            <LinearLayout
+                android:layout_marginTop="50dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <com.ervin.litepal.Ui.widget.NestedListView
+                    android:id="@+id/lv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                </com.ervin.litepal.Ui.widget.NestedListView>
+
+            </LinearLayout>
+
 
         </android.support.v4.widget.NestedScrollView>
         <android.support.design.widget.FloatingActionButton
