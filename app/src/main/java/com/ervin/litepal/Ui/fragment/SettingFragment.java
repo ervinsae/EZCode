@@ -31,13 +31,19 @@ public class SettingFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_setting,container,false);
-        initView(view);
+        viewPager = (ViewPager) view.findViewById(R.id.pager);
+        tabLayout = (TabLayout) view.findViewById(R.id.tabLayout);
         return view;
     }
 
-    private void initView(View view){
-        viewPager = (ViewPager) view.findViewById(R.id.pager);
-        tabLayout = (TabLayout) view.findViewById(R.id.tabLayout);
+    @Override
+    public void onResume() {
+        super.onResume();
+        initData();
+    }
+
+    private void initData(){
+
 
         GoogleMusicAdapter pagerAdapter =
                 new GoogleMusicAdapter(getActivity().getSupportFragmentManager(),getActivity());

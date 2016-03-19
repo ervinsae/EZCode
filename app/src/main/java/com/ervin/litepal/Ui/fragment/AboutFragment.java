@@ -1,7 +1,9 @@
 package com.ervin.litepal.Ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +13,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.ervin.litepal.R;
+import com.ervin.litepal.Ui.CategoryActivity;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -21,6 +24,8 @@ import butterknife.ButterKnife;
 public class AboutFragment extends Fragment {
     @Bind(R.id.lv)
     ListView listView;
+    @Bind(R.id.fab)
+    FloatingActionButton fab;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -37,6 +42,10 @@ public class AboutFragment extends Fragment {
 
     private void initData() {
         listView.setAdapter(new AboutAdapter());
+        fab.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), CategoryActivity.class);
+            startActivity(intent);
+        });
     }
 
     class AboutAdapter extends BaseAdapter{
