@@ -1,4 +1,4 @@
-package com.ervin.litepal.Ui.fragment;
+package com.ervin.litepal.ui.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.ervin.litepal.Model.AppInfo;
+import com.ervin.litepal.model.AppInfo;
 import com.ervin.litepal.R;
 import com.ervin.litepal.Utils.AppinfoUtils;
 

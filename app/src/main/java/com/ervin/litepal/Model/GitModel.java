@@ -1,4 +1,4 @@
-package com.ervin.litepal.Model;
+package com.ervin.litepal.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

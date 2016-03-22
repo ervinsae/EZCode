@@ -5,7 +5,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 
-import com.ervin.litepal.Model.AppInfo;
+import com.ervin.litepal.model.AppInfo;
 
 import java.util.ArrayList;
 import java.util.List;

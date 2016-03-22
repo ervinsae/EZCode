@@ -1,4 +1,4 @@
-package com.ervin.litepal.Api;
+package com.ervin.litepal.api;
 
 import android.annotation.TargetApi;
 import android.content.BroadcastReceiver;

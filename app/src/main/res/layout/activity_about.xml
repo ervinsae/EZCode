@@ -36,7 +36,7 @@
                     app:layout_collapseMode="parallax"
                     app:layout_collapseParallaxMultiplier="0.6">
 
-                    <com.ervin.litepal.Ui.widget.CircleImageView
+                    <com.ervin.litepal.ui.widget.CircleImageView
                         android:id="@+id/icon"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
@@ -83,11 +83,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
-                <com.ervin.litepal.Ui.widget.NestedListView
+                <com.ervin.litepal.ui.widget.NestedListView
                     android:id="@+id/lv"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
-                </com.ervin.litepal.Ui.widget.NestedListView>
+                </com.ervin.litepal.ui.widget.NestedListView>
 
             </LinearLayout>
 

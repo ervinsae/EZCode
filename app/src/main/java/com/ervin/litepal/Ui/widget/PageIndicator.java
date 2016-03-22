@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package com.ervin.litepal.Ui.widget;
+package com.ervin.litepal.ui.widget;
 
 import android.support.v4.view.ViewPager;
 

@@ -1,9 +1,10 @@
-package com.ervin.litepal.Api;
+package com.ervin.litepal.api;
 
-import com.ervin.litepal.Model.GitModel;
-import com.ervin.litepal.Model.LoginData;
-import com.ervin.litepal.Request.RequestBody;
-import com.ervin.litepal.Request.User;
+import com.ervin.litepal.model.GitModel;
+import com.ervin.litepal.model.LoginData;
+import com.ervin.litepal.model.movie.MovieEntity;
+import com.ervin.litepal.request.RequestBody;
+import com.ervin.litepal.request.User;
 
 import java.util.List;
 
@@ -44,4 +45,8 @@ public interface APIService {
 
     @POST("/appUsersLogin")
     Call<LoginData> createUser(String type,@Body RequestBody user);
+
+    //我们使用豆瓣电影的Top250做测试连接，目标地址为:https://api.douban.com/v2/movie/top250?start=0&count=10
+    @GET("top250")
+    Call<MovieEntity> getTopMovie(@Query("start") int start, @Query("count") int count);
 }

@@ -11,7 +11,7 @@
         android:orientation="vertical"
         android:background="@color/theme_primary"
         android:elevation="6dp">
-        <com.ervin.litepal.Ui.widget.CircleImageView
+        <com.ervin.litepal.ui.widget.CircleImageView
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_margin="20dp"

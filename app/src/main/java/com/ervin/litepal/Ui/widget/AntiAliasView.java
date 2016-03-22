@@ -1,4 +1,4 @@
-package com.ervin.litepal.Ui.widget;
+package com.ervin.litepal.ui.widget;
 
 import android.annotation.TargetApi;
 import android.content.Context;

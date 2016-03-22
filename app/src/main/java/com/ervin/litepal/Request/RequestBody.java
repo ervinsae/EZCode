@@ -1,4 +1,4 @@
-package com.ervin.litepal.Request;
+package com.ervin.litepal.request;
 
 /**
  * Created by Ervin on 2015/11/20.

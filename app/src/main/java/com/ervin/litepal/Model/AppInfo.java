@@ -1,4 +1,4 @@
-package com.ervin.litepal.Model;
+package com.ervin.litepal.model;
 
 import android.graphics.drawable.Drawable;
 

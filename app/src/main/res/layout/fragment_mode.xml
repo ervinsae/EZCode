@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.ervin.litepal.Ui.widget.DragCardsView
+        <com.ervin.litepal.ui.widget.DragCardsView
             android:id="@+id/dragCardsView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -24,7 +24,7 @@
             app:cards_width="300dp"
             app:max_visible="4"
             app:rotation_degrees="15">
-        </com.ervin.litepal.Ui.widget.DragCardsView>
+        </com.ervin.litepal.ui.widget.DragCardsView>
 
     </RelativeLayout>
 

@@ -1,4 +1,4 @@
-package com.ervin.litepal.Ui.fragment;
+package com.ervin.litepal.ui.fragment;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
@@ -14,10 +14,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ervin.litepal.R;
-import com.ervin.litepal.Ui.HomeActivity;
-import com.ervin.litepal.Ui.widget.DragCardsView;
-import com.ervin.litepal.Ui.widget.HalfRoundedDrawable;
-import com.ervin.litepal.Ui.widget.MyImageView;
+import com.ervin.litepal.ui.HomeActivity;
+import com.ervin.litepal.ui.widget.DragCardsView;
+import com.ervin.litepal.ui.widget.HalfRoundedDrawable;
+import com.ervin.litepal.ui.widget.MyImageView;
 import com.ervin.litepal.Utils.Tools;
 
 import java.util.ArrayList;

@@ -1,11 +1,11 @@
-package com.ervin.litepal.Api;
+package com.ervin.litepal.api;
 
 import android.util.Log;
 
-import com.ervin.litepal.Model.LoginData;
-import com.ervin.litepal.Request.RequestBody;
-import com.ervin.litepal.Request.RequestConstants;
-import com.ervin.litepal.Request.RestClient;
+import com.ervin.litepal.model.LoginData;
+import com.ervin.litepal.request.RequestBody;
+import com.ervin.litepal.request.RequestConstants;
+import com.ervin.litepal.request.RestClient;
 
 import org.json.JSONObject;
 

@@ -1,4 +1,4 @@
-package com.ervin.litepal.Ui;
+package com.ervin.litepal.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,8 +9,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 
 import com.ervin.litepal.R;
-import com.ervin.litepal.Ui.fragment.TestFragment;
-import com.ervin.litepal.Ui.widget.TabPageIndicator;
+import com.ervin.litepal.ui.fragment.TestFragment;
+import com.ervin.litepal.ui.widget.TabPageIndicator;
 
 /**
  * Created by Ervin on 2015/12/22.

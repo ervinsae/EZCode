@@ -1,4 +1,4 @@
-package com.ervin.litepal.Ui.fragment;
+package com.ervin.litepal.ui.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

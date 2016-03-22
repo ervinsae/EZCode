@@ -1,4 +1,4 @@
-package com.ervin.litepal.Request;
+package com.ervin.litepal.request;
 
 import com.google.gson.annotations.SerializedName;
 

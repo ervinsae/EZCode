@@ -1,8 +1,6 @@
-package com.ervin.litepal.Request;
+package com.ervin.litepal.request;
 
-import com.ervin.litepal.Api.APIService;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.ervin.litepal.api.APIService;
 
 import retrofit.GsonConverterFactory;
 import retrofit.Retrofit;
@@ -13,9 +11,8 @@ import retrofit.Retrofit;
 public class RestClient {
     private APIService apiService;
     public RestClient(String url){
-        Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
 
-        Retrofit retrofit = new Retrofit.Builder().baseUrl(url).addConverterFactory(GsonConverterFactory.create(gson)).build();
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(url).addConverterFactory(GsonConverterFactory.create()).build();
 
         apiService = retrofit.create(APIService.class);
     }

@@ -1,9 +1,9 @@
-package com.ervin.litepal.Api;
+package com.ervin.litepal.api;
 
-import com.ervin.litepal.Model.GitModel;
-import com.ervin.litepal.Request.RequestConstants;
-import com.ervin.litepal.Request.RestClient;
-import com.ervin.litepal.Request.User;
+import com.ervin.litepal.model.GitModel;
+import com.ervin.litepal.request.RequestConstants;
+import com.ervin.litepal.request.RestClient;
+import com.ervin.litepal.request.User;
 
 import java.util.List;
 

@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ervin.litepal.Ui.widget;
+package com.ervin.litepal.ui.widget;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;

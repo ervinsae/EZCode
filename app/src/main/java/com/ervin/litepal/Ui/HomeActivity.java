@@ -1,4 +1,4 @@
-package com.ervin.litepal.Ui;
+package com.ervin.litepal.ui;
 
 
 import android.content.Intent;
@@ -15,14 +15,14 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.ervin.litepal.Api.LoginApi;
-import com.ervin.litepal.Model.LoginData;
+import com.ervin.litepal.api.LoginApi;
+import com.ervin.litepal.model.LoginData;
 import com.ervin.litepal.R;
-import com.ervin.litepal.Ui.fragment.AboutFragment;
-import com.ervin.litepal.Ui.fragment.FragmentCallback;
-import com.ervin.litepal.Ui.fragment.HomeFragment;
-import com.ervin.litepal.Ui.fragment.ModeFragment;
-import com.ervin.litepal.Ui.fragment.SettingFragment;
+import com.ervin.litepal.ui.fragment.AboutFragment;
+import com.ervin.litepal.ui.fragment.FragmentCallback;
+import com.ervin.litepal.ui.fragment.HomeFragment;
+import com.ervin.litepal.ui.fragment.ModeFragment;
+import com.ervin.litepal.ui.fragment.SettingFragment;
 import com.ervin.litepal.Utils.Md5;
 
 import java.util.HashMap;

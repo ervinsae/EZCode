@@ -77,11 +77,11 @@
         <View style="@style/SeparationLine" />
 
         <TextView
-            android:id="@+id/send_sportdata"
+            android:id="@+id/test_douban_api"
             android:layout_width="fill_parent"
             android:layout_height="40dp"
             android:gravity="center"
-            android:text="获取运动数据" />
+            android:text="Retrofit豆瓣API测试" />
 
         <View style="@style/SeparationLine" />
 

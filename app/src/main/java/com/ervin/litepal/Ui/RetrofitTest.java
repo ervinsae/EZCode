@@ -1,4 +1,4 @@
-package com.ervin.litepal.Ui;
+package com.ervin.litepal.ui;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -11,16 +11,19 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.ervin.litepal.Api.GitModeApi;
-import com.ervin.litepal.Api.LoginApi;
-import com.ervin.litepal.Model.GitModel;
-import com.ervin.litepal.Model.LoginData;
 import com.ervin.litepal.R;
-import com.ervin.litepal.Request.RequestBody;
-import com.ervin.litepal.Request.RequestConstants;
-import com.ervin.litepal.Request.RestClient;
-import com.ervin.litepal.Request.User;
 import com.ervin.litepal.Utils.Md5;
+import com.ervin.litepal.api.GetMoviesApi;
+import com.ervin.litepal.api.GitModeApi;
+import com.ervin.litepal.api.LoginApi;
+import com.ervin.litepal.model.GitModel;
+import com.ervin.litepal.model.LoginData;
+import com.ervin.litepal.model.movie.MovieEntity;
+import com.ervin.litepal.model.movie.Subjects;
+import com.ervin.litepal.request.RequestBody;
+import com.ervin.litepal.request.RequestConstants;
+import com.ervin.litepal.request.RestClient;
+import com.ervin.litepal.request.User;
 import com.ervin.litepal.table.Model;
 
 import org.json.JSONException;
@@ -56,6 +59,8 @@ public class RetrofitTest extends BaseActivity implements View.OnClickListener{
     TextView test_notity;
     @Bind(R.id.test_publishsubject)
     TextView test_publishSuject;
+    @Bind(R.id.test_douban_api)
+    TextView test_douban;
 
 
     private NotificationReceiver nReceiver;
@@ -73,6 +78,7 @@ public class RetrofitTest extends BaseActivity implements View.OnClickListener{
         test_json.setOnClickListener(this);
         test_notity.setOnClickListener(this);
         test_publishSuject.setOnClickListener(this);
+        test_douban.setOnClickListener(this);
 
         nReceiver = new NotificationReceiver();
         IntentFilter filter = new IntentFilter();
@@ -135,7 +141,7 @@ public class RetrofitTest extends BaseActivity implements View.OnClickListener{
                 });
                 break;
 
-            case R.id.ref_login:
+            case R.id.ref_login: //失败
                 Log.d("retrofit3", "clicked");
                 Md5 md5 = new Md5();
                 String psw = md5.getMD5Str("123456");
@@ -157,7 +163,7 @@ public class RetrofitTest extends BaseActivity implements View.OnClickListener{
                     }
                 });
                 break;
-            case R.id.ref_post:
+            case R.id.ref_post: //失败
                 Log.d("retrofit4", "clicked");
                 User user = new User(2, "defunkt");
                 GitModeApi.postRequest(user, new Callback<GitModel>() {
@@ -194,6 +200,29 @@ public class RetrofitTest extends BaseActivity implements View.OnClickListener{
             case R.id.test_publishsubject:
                 //publishSubjectExample();
                 RxJavaExample();
+                break;
+            case R.id.test_douban_api://获取豆瓣top200电影数据
+                GetMoviesApi.request(0, 10, new Callback<MovieEntity>() {
+                    @Override
+                    public void onResponse(Response<MovieEntity> response, Retrofit retrofit) {
+                        if(response != null) {
+                            Log.i("ervin","返回码："+response.code());
+                            if(response.body()!=null) {
+                                MovieEntity movieEntity = response.body();
+                                for (Subjects subjects : movieEntity.getSubjects()) {
+                                    Log.i("ervin", subjects.getTitle());
+                                }
+                            }else{
+                                Log.i("ervin",response.errorBody().toString());
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Throwable t) {
+                        Log.i("ervin",t.getMessage());
+                    }
+                });
                 break;
         }
     }

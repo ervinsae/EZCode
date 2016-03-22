@@ -1,4 +1,4 @@
-package com.ervin.litepal.Ui;
+package com.ervin.litepal.ui;
 
 import android.os.Bundle;
 import android.os.PersistableBundle;

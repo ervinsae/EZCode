@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.ervin.litepal.Ui.widget;
+package com.ervin.litepal.ui.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;

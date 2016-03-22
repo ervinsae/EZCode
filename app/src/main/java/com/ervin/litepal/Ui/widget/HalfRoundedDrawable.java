@@ -1,4 +1,4 @@
-package com.ervin.litepal.Ui.widget;
+package com.ervin.litepal.ui.widget;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;

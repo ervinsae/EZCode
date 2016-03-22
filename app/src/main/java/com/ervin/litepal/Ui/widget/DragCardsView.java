@@ -1,4 +1,4 @@
-package com.ervin.litepal.Ui.widget;
+package com.ervin.litepal.ui.widget;
 
 /**
  * Created by Ervin on 2015/12/22.

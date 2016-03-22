@@ -1,4 +1,4 @@
-package com.ervin.litepal.Ui;
+package com.ervin.litepal.ui;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -15,7 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ervin.litepal.R;
-import com.ervin.litepal.Ui.fragment.TestFragment;
+import com.ervin.litepal.ui.fragment.TestFragment;
 
 /**
  * Created by Ervin on 2015/12/23.

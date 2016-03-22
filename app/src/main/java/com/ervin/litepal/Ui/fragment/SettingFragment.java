@@ -1,4 +1,4 @@
-package com.ervin.litepal.Ui.fragment;
+package com.ervin.litepal.ui.fragment;
 
 import android.content.Context;
 import android.os.Bundle;

@@ -10,9 +10,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.ervin.litepal.Ui.BaseActivity;
-import com.ervin.litepal.Ui.HomeActivity;
-import com.ervin.litepal.Ui.fragment.WelcomeFragments;
+import com.ervin.litepal.ui.BaseActivity;
+import com.ervin.litepal.ui.HomeActivity;
+import com.ervin.litepal.ui.fragment.WelcomeFragments;
 import com.ervin.litepal.event.BusProvider;
 import com.ervin.litepal.event.EventBase;
 import com.ervin.litepal.event.SyncEvent;
