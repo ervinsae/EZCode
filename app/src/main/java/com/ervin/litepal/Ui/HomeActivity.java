@@ -23,7 +23,7 @@ import com.ervin.litepal.ui.fragment.FragmentCallback;
 import com.ervin.litepal.ui.fragment.HomeFragment;
 import com.ervin.litepal.ui.fragment.ModeFragment;
 import com.ervin.litepal.ui.fragment.SettingFragment;
-import com.ervin.litepal.Utils.Md5;
+import com.ervin.litepal.utils.Md5;
 
 import java.util.HashMap;
 import java.util.Map;

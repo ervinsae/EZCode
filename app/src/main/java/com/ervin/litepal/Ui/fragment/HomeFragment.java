@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 import com.ervin.litepal.model.AppInfo;
 import com.ervin.litepal.R;
-import com.ervin.litepal.Utils.AppinfoUtils;
+import com.ervin.litepal.utils.AppinfoUtils;
 
 import java.util.List;
 
