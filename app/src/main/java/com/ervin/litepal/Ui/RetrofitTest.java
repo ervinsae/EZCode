@@ -12,7 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ervin.litepal.R;
-import com.ervin.litepal.Utils.Md5;
+import com.ervin.litepal.utils.Md5;
 import com.ervin.litepal.api.GetMoviesApi;
 import com.ervin.litepal.api.GitModeApi;
 import com.ervin.litepal.api.LoginApi;
@@ -23,7 +23,7 @@ import com.ervin.litepal.model.movie.Subjects;
 import com.ervin.litepal.request.RequestBody;
 import com.ervin.litepal.request.RequestConstants;
 import com.ervin.litepal.request.RestClient;
-import com.ervin.litepal.request.User;
+import com.ervin.litepal.model.User;
 import com.ervin.litepal.table.Model;
 
 import org.json.JSONException;

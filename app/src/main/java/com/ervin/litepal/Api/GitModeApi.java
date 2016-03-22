@@ -3,7 +3,7 @@ package com.ervin.litepal.api;
 import com.ervin.litepal.model.GitModel;
 import com.ervin.litepal.request.RequestConstants;
 import com.ervin.litepal.request.RestClient;
-import com.ervin.litepal.request.User;
+import com.ervin.litepal.model.User;
 
 import java.util.List;
 

@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -15,22 +14,13 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.ervin.litepal.api.LoginApi;
-import com.ervin.litepal.model.LoginData;
 import com.ervin.litepal.R;
 import com.ervin.litepal.ui.fragment.AboutFragment;
 import com.ervin.litepal.ui.fragment.FragmentCallback;
 import com.ervin.litepal.ui.fragment.HomeFragment;
 import com.ervin.litepal.ui.fragment.ModeFragment;
+import com.ervin.litepal.ui.fragment.RetrofitFragment;
 import com.ervin.litepal.ui.fragment.SettingFragment;
-import com.ervin.litepal.utils.Md5;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import retrofit.Callback;
-import retrofit.Response;
-import retrofit.Retrofit;
 
 /**
  * Created by Ervin on 2015/12/19.
@@ -51,6 +41,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener,L
     private ModeFragment modeFragment;
     private AboutFragment aboutFragment;
     private SettingFragment settingFragment;
+    private RetrofitFragment retrofitFragment;
 
     private int imageIcon[] = {R.mipmap.ic_navview_explore,R.mipmap.ic_navview_map,R.mipmap.ic_navview_my_schedule,
     R.mipmap.ic_navview_play_circle_fill,R.mipmap.ic_navview_social,R.mipmap.ic_navview_settings};
@@ -72,6 +63,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener,L
         modeFragment = new ModeFragment();
         aboutFragment = new AboutFragment();
         settingFragment = new SettingFragment();
+        retrofitFragment = new RetrofitFragment();
 
         mContent = homeFragment; // 默认Fragment
         fragmentManager.beginTransaction().replace(R.id.content_main, mContent).commit();
@@ -112,7 +104,8 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener,L
                 switchFragment(position,modeFragment);
                 break;
             case 2:
-                Login();
+                //Login();
+                switchFragment(position,retrofitFragment);
                 break;
             case 3:
                /* FrameLayout ff = (FrameLayout) getActivity().findViewById(R.id.content_main);
@@ -171,40 +164,6 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener,L
             tvItem.setText(getResources().getString(imageStr[position]));
             return convertView;
         }
-    }
-
-    private void Login() {
-        Map<String,Object> params = new HashMap<>();
-        Md5 md5 = new Md5();
-        String psw = md5.getMD5Str("123456");
-        params.put("phoneNumber", "15820789114");
-        params.put("password", psw);
-        params.put("mode", "0");
-
-        LoginApi.request(params, new Callback<LoginData>() {
-            @Override
-            public void onResponse(Response<LoginData> response, Retrofit retrofit) {
-                Log.i("ervin:onResponse",response.toString());
-                try {
-                    Log.i("ervin:onResponse", response.errorBody().string().toString());
-                    Log.i("ervin:onResponse", response.body().phoneNumber);
-
-                }catch (Exception e){
-
-                }
-                //Log.i("ervin:onResponse",response.body().phoneNumber);
-            }
-
-            @Override
-            public void onFailure(Throwable t) {
-                Log.i("ervin:onFailure",t.toString());
-            }
-        });
-
-
-        Intent intent = new Intent(this, RetrofitTest.class);
-        startActivity(intent);
-
     }
 
 }

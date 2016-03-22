@@ -4,7 +4,7 @@ import com.ervin.litepal.model.GitModel;
 import com.ervin.litepal.model.LoginData;
 import com.ervin.litepal.model.movie.MovieEntity;
 import com.ervin.litepal.request.RequestBody;
-import com.ervin.litepal.request.User;
+import com.ervin.litepal.model.User;
 
 import java.util.List;
 

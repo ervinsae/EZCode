@@ -18,7 +18,7 @@ import com.ervin.litepal.ui.HomeActivity;
 import com.ervin.litepal.ui.widget.DragCardsView;
 import com.ervin.litepal.ui.widget.HalfRoundedDrawable;
 import com.ervin.litepal.ui.widget.MyImageView;
-import com.ervin.litepal.Utils.Tools;
+import com.ervin.litepal.utils.Tools;
 
 import java.util.ArrayList;
 

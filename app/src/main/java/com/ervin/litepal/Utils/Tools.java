@@ -1,4 +1,4 @@
-package com.ervin.litepal.Utils;
+package com.ervin.litepal.utils;
 
 import android.content.Context;
 import android.graphics.Bitmap;

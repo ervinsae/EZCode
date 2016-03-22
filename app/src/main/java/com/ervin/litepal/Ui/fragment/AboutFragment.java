@@ -84,7 +84,7 @@ public class AboutFragment extends Fragment {
                 viewHolder = (ViewHolder) convertView.getTag();
             }
 
-            viewHolder.tv.setTextColor(getResources().getColor(R.color.material_cyan_300));
+            viewHolder.tv.setTextColor(getResources().getColor(R.color.colorPrimary));
 
             ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(viewHolder.tv,"translationX",0.0f,windowX - viewHolder.tv.getWidth(),0.0f);
             objectAnimator.setInterpolator(new EasingInterpolator(Ease.BACK_IN_OUT));

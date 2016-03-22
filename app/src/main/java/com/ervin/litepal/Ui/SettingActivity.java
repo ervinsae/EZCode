@@ -37,7 +37,7 @@ public class SettingActivity extends BaseActivity {
     }
 
     private void initView(){
-        viewPager = (ViewPager)findViewById(R.id.pager);
+        viewPager = (ViewPager) findViewById(R.id.pager);
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
 
         GoogleMusicAdapter pagerAdapter =
