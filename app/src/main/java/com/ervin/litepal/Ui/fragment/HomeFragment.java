@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.ervin.litepal.model.AppInfo;
 import com.ervin.litepal.R;
 import com.ervin.litepal.utils.AppinfoUtils;
+import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.List;
 
@@ -37,6 +38,8 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     RecyclerView appListView;
     @Bind(R.id.home_fragment_container)
     SwipeRefreshLayout swipeLayout;
+    @Bind(R.id.loading)
+    AVLoadingIndicatorView mLoading;
     private TextView tvTitle;
 
     AppListAdapter adapter;
@@ -69,6 +72,8 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         tvTitle = (TextView) rootView.findViewById(R.id.toolbar_center_title);
         tvTitle.setText(R.string.menu_home);
 
+        mLoading.setBackgroundColor(getResources().getColor(R.color.material_cyan_300));
+        mLoading.setVisibility(View.VISIBLE);
     }
 
     private void refreshTheList() {
@@ -93,6 +98,7 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                         if(appInfos == null){
                             Log.d("ervin","----------APPInfo is null");
                         }
+                        mLoading.setVisibility(View.GONE);
                         appListView.setVisibility(View.VISIBLE);
                         if(adapter == null){
                             adapter = new AppListAdapter(appInfos);
