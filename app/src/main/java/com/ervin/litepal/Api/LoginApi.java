@@ -6,6 +6,7 @@ import com.ervin.litepal.model.LoginData;
 import com.ervin.litepal.request.RequestBody;
 import com.ervin.litepal.request.RequestConstants;
 import com.ervin.litepal.request.RestClient;
+import com.ervin.litepal.utils.DataSecurity;
 
 import org.json.JSONObject;
 
@@ -24,8 +25,14 @@ public class LoginApi {
 
         String jsonParams = json.toString();
         Log.d("ervin", "jsonParams:" + jsonParams);
+        try {
+            String encodeParams = DataSecurity.encode(jsonParams);
+            restClient.getApiService().getLoginData(RequestConstants.LOGIN_URL,encodeParams).enqueue(callback);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-        restClient.getApiService().getLoginData(RequestConstants.LOGIN_URL,jsonParams).enqueue(callback);
+
     }
 
     public static void request(Callback<LoginData> callback){

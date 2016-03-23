@@ -5,15 +5,23 @@ import com.ervin.litepal.request.RequestConstants;
 import com.ervin.litepal.request.RestClient;
 
 import retrofit.Callback;
+import rx.Observable;
 
 /**
  * Created by Ervin on 2016/3/22.
  */
 public class GetMoviesApi {
 
+    //Retrofit
     public static void request(int start, int count, Callback<MovieEntity> callback){
 
         RestClient restClient = new RestClient(RequestConstants.DOUBANAPI_URL);
         restClient.getApiService().getTopMovie(start,count).enqueue(callback);
+    }
+
+    //Rxandroid + Retrofit
+    public static Observable<MovieEntity> request(int start, int count){
+
+        return RestClient.RestRxClient(RequestConstants.DOUBANAPI_URL).getRxTopMovie(start,count);
     }
 }

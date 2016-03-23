@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ervin.litepal.R;
 import com.ervin.litepal.api.GetMoviesApi;
@@ -32,6 +33,9 @@ import butterknife.ButterKnife;
 import retrofit.Callback;
 import retrofit.Response;
 import retrofit.Retrofit;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by Ervin on 2016/3/22.
@@ -65,7 +69,31 @@ public class RetrofitFragment extends Fragment {
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         rvMovie.setLayoutManager(llm);
-        initData();
+        //initData();
+        initRxData();
+    }
+
+    private void initRxData() {
+        GetMoviesApi.request(0,15).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<MovieEntity>() {
+                    @Override
+                    public void onCompleted() {
+                        Toast.makeText(getActivity(),"loading data finish",Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(MovieEntity movieEntity) {
+                        mLoading.setVisibility(View.GONE);
+                        adapter = new MovieAdapter(movieEntity);
+                        rvMovie.setAdapter(adapter);
+                    }
+                });
     }
 
     private void initData() {
@@ -126,6 +154,7 @@ public class RetrofitFragment extends Fragment {
         }
     }
 
+    // TODO: 2016/3/23 check the result
     private void Login() {
         Map<String,Object> params = new HashMap<>();
         Md5 md5 = new Md5();

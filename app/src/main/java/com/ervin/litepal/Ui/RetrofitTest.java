@@ -12,19 +12,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ervin.litepal.R;
-import com.ervin.litepal.utils.Md5;
 import com.ervin.litepal.api.GetMoviesApi;
 import com.ervin.litepal.api.GitModeApi;
 import com.ervin.litepal.api.LoginApi;
 import com.ervin.litepal.model.GitModel;
 import com.ervin.litepal.model.LoginData;
+import com.ervin.litepal.model.User;
 import com.ervin.litepal.model.movie.MovieEntity;
 import com.ervin.litepal.model.movie.Subjects;
 import com.ervin.litepal.request.RequestBody;
 import com.ervin.litepal.request.RequestConstants;
 import com.ervin.litepal.request.RestClient;
-import com.ervin.litepal.model.User;
 import com.ervin.litepal.table.Model;
+import com.ervin.litepal.utils.Md5;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -149,7 +149,7 @@ public class RetrofitTest extends BaseActivity implements View.OnClickListener{
                 body.phoneNumber = "15820789114";
                 body.password = psw;
                 body.mode = "0";
-                LoginApi.request(RequestConstants.LOGIN_URL, body, new Callback<LoginData>() {
+                LoginApi.request(RequestConstants.LOGIN_URL,body, new Callback<LoginData>() {
                     @Override
                     public void onResponse(Response<LoginData> response, Retrofit retrofit) {
                         if (response != null) {
