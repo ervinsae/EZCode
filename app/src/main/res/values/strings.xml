@@ -15,4 +15,6 @@
     <string name="menu_about">About</string>
     <string name="menu_setting">Setting</string>
 
+    <string name="rate">评分:%1$.1f</string>
+
 </resources>

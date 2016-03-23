@@ -49,22 +49,31 @@ public class RetrofitFragment extends Fragment {
     @Bind(R.id.fab)
     FloatingActionButton mFab;
 
+    private TextView tvTitle;
+
     MovieAdapter adapter;
+
+    int top = 30;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_retrofit,container,false);
         ButterKnife.bind(this,view);
-        initView();
+        initView(view);
 
         return view;
     }
 
-    private void initView() {
+    private void initView(View rootView) {
         mLoading.setVisibility(View.VISIBLE);
         mLoading.setBackgroundColor(getResources().getColor(R.color.material_amber_100));
         mFab.setOnClickListener(v->Login());
+
+
+        tvTitle = (TextView) rootView.findViewById(R.id.toolbar_center_title);
+        tvTitle.setText("豆瓣排名前"+top+"电影");
+
 
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
@@ -74,7 +83,7 @@ public class RetrofitFragment extends Fragment {
     }
 
     private void initRxData() {
-        GetMoviesApi.request(0,15).subscribeOn(Schedulers.io())
+        GetMoviesApi.request(0,top).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<MovieEntity>() {
                     @Override
@@ -125,7 +134,7 @@ public class RetrofitFragment extends Fragment {
         }
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            ViewHolder holder = new ViewHolder(LayoutInflater.from(getActivity()).inflate(R.layout.adapter_conversation_friend_interact,parent,false));
+            ViewHolder holder = new ViewHolder(LayoutInflater.from(getActivity()).inflate(R.layout.adapter_retrofit_test_item,parent,false));
             return holder;
         }
 
@@ -133,7 +142,11 @@ public class RetrofitFragment extends Fragment {
         public void onBindViewHolder(ViewHolder holder, int position) {
             Picasso.with(getActivity()).load(movies.getSubjects().get(position).getCasts().get(0).getAvatars().getMedium()).into(holder.icon);
             holder.name.setText(movies.getSubjects().get(position).getTitle());
-            holder.name.setTextColor(getResources().getColor(R.color.material_red_100));
+            holder.name.setTextColor(getResources().getColor(R.color.material_red_200));
+
+            holder.rate.setTextColor(getResources().getColor(R.color.material_red_100));
+            String rateStr = String.format(getResources().getString(R.string.rate),movies.getSubjects().get(position).getRating().getAverage());
+            holder.rate.setText(rateStr);
         }
 
         @Override
@@ -147,6 +160,8 @@ public class RetrofitFragment extends Fragment {
             ImageView icon;
             @Bind(R.id.tv_name)
             TextView name;
+            @Bind(R.id.tv_rate)
+            TextView rate;
             public ViewHolder(View itemView) {
                 super(itemView);
                 ButterKnife.bind(this,itemView);
