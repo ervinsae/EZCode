@@ -34,5 +34,7 @@
     <list>
         <mapping class="com.ervin.litepal.table.Profile"></mapping>
         <mapping class="com.ervin.litepal.table.Model"></mapping>
+        <mapping class="com.ervin.litepal.table.Meizhis"></mapping>
+        <mapping class="com.ervin.litepal.table.MVideo"></mapping>
     </list>
 </litepal>

@@ -3,8 +3,10 @@ package com.ervin.litepal.api;
 import com.ervin.litepal.model.GitModel;
 import com.ervin.litepal.model.LoginData;
 import com.ervin.litepal.model.User;
+import com.ervin.litepal.model.meizhi.MeizhiEntity;
 import com.ervin.litepal.model.movie.MovieEntity;
 import com.ervin.litepal.request.RequestBody;
+import com.ervin.litepal.table.MVideo;
 
 import java.util.List;
 
@@ -54,4 +56,16 @@ public interface APIService {
     //使用Rxandroid+Retrofit进行网络请求
     @GET("top250")
     Observable<MovieEntity> getRxTopMovie(@Query("start") int start, @Query("count") int count);
+
+    //Gank.io API 进行请求
+    @GET("data/福利/" + 10 + "/{page}")
+    Observable<MeizhiEntity> getMeizhiData( @Path("page") int page);   //https://gank.io/api/data/福利/10/1
+
+   /* @GET("/day/{year}/{month}/{day}") Observable<GankData> getGankData(
+            @Path("year") int year,
+            @Path("month") int month,
+            @Path("day") int day);//https://gank.io/api/day/2016/02/15*/
+
+    @GET("/data/休息视频/" + 10 + "/{page}")
+    Observable<MVideo> getVedioData(@Path("page") int page);
 }

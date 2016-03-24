@@ -18,6 +18,7 @@ import com.ervin.litepal.R;
 import com.ervin.litepal.ui.fragment.AboutFragment;
 import com.ervin.litepal.ui.fragment.FragmentCallback;
 import com.ervin.litepal.ui.fragment.HomeFragment;
+import com.ervin.litepal.ui.fragment.MeizhiFragment;
 import com.ervin.litepal.ui.fragment.ModeFragment;
 import com.ervin.litepal.ui.fragment.RetrofitFragment;
 import com.ervin.litepal.ui.fragment.SettingFragment;
@@ -42,12 +43,13 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener,L
     private AboutFragment aboutFragment;
     private SettingFragment settingFragment;
     private RetrofitFragment retrofitFragment;
+    private MeizhiFragment meizhiFragment;
 
     private int imageIcon[] = {R.mipmap.ic_navview_explore,R.mipmap.ic_navview_map,R.mipmap.ic_navview_my_schedule,
-    R.mipmap.ic_navview_play_circle_fill,R.mipmap.ic_navview_social,R.mipmap.ic_navview_settings};
+    R.mipmap.ic_navview_play_circle_fill,R.mipmap.ic_navview_social,R.mipmap.ic_navview_settings,R.mipmap.ic_navview_video_library};
 
     private int imageStr[] = {R.string.menu_home,R.string.menu_Mode,R.string.menu_retrofit,
-    R.string.menu_profile,R.string.menu_setting,R.string.menu_about};
+    R.string.menu_profile,R.string.menu_setting,R.string.menu_about,R.string.menu_meizhi};
 
     public HomeActivity getActivity(){
         return this;
@@ -64,6 +66,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener,L
         aboutFragment = new AboutFragment();
         settingFragment = new SettingFragment();
         retrofitFragment = new RetrofitFragment();
+        meizhiFragment = new MeizhiFragment();
 
         mContent = homeFragment; // 默认Fragment
         fragmentManager.beginTransaction().replace(R.id.content_main, mContent).commit();
@@ -122,6 +125,9 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener,L
                 /*Intent intent3 = new Intent(HomeActivity.this,AboutActivity.class);
                 startActivity(intent3);*/
                 switchFragment(position,aboutFragment);
+                break;
+            case 6:
+                switchFragment(position,meizhiFragment);
                 break;
         }
     }

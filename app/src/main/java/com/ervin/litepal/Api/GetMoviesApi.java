@@ -22,6 +22,6 @@ public class GetMoviesApi {
     //Rxandroid + Retrofit
     public static Observable<MovieEntity> request(int start, int count){
 
-        return RestClient.RestRxClient(RequestConstants.DOUBANAPI_URL).getRxTopMovie(start,count);
+        return RestClient.RestRxClient(RequestConstants.DOUBANAPI_URL,false).getRxTopMovie(start,count);
     }
 }
