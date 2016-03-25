@@ -2,9 +2,11 @@ package com.ervin.litepal.ui.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,9 +35,12 @@ public class MeizhiFragment extends Fragment {
 
     @Bind(R.id.rv_meizhi)
     RecyclerView mRecycleview;
+    @Bind(R.id.main_fab)
+    FloatingActionButton mFab;
 
     private MeizhiListAdapter adpter;
-    private List<Meizhis> mMeizhiList;
+    private static List<Meizhis> mMeizhiList;
+    private static int clickNum = 1;
 
 
     @Nullable
@@ -57,12 +62,16 @@ public class MeizhiFragment extends Fragment {
         adpter = new MeizhiListAdapter(getActivity(),mMeizhiList);
         mRecycleview.setAdapter(adpter);
 
-        initData();
+        //refreshData(1);
+
+        mFab.setOnClickListener(v -> {
+            refreshData(clickNum);
+        });
     }
 
-    private void initData() {
+    private void refreshData(int page) {
 
-        GetMeizhiApi.getMeizhiData(1).subscribeOn(Schedulers.io())
+        GetMeizhiApi.getMeizhiData(page).subscribeOn(Schedulers.io())
                 .map(meizhiEntity -> meizhiEntity.results)
                 .doOnNext(this::saveMeizhis)
                 .observeOn(AndroidSchedulers.mainThread())
@@ -79,7 +88,9 @@ public class MeizhiFragment extends Fragment {
 
                     @Override
                     public void onNext(List<Meizhis> meizhises) {
-                        mMeizhiList.clear();
+                        //mMeizhiList.clear();
+                        clickNum++;
+                        Log.d("ervin","点击次数" + clickNum);
                         mMeizhiList.addAll(meizhises);
                         adpter.notifyDataSetChanged();
                     }
@@ -89,9 +100,10 @@ public class MeizhiFragment extends Fragment {
 
     public void saveMeizhis(List<Meizhis> list){
         for(Meizhis meizhi : list){
-            if(DataSupport.findBySQL("select * from meizhis where url = ?"+ meizhi.url) != null) meizhi.save();
+            //if(DataSupport.findBySQL("select * from meizhis where url = ?"+ meizhi.url) != null) meizhi.save();
         }
     }
+
 
 
 }
