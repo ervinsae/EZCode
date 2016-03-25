@@ -40,7 +40,7 @@ public class MeizhiFragment extends Fragment {
 
     private MeizhiListAdapter adpter;
     private static List<Meizhis> mMeizhiList;
-    private static int clickNum = 1;
+    private int clickNum = 1;
 
 
     @Nullable
@@ -62,7 +62,7 @@ public class MeizhiFragment extends Fragment {
         adpter = new MeizhiListAdapter(getActivity(),mMeizhiList);
         mRecycleview.setAdapter(adpter);
 
-        //refreshData(1);
+        refreshData(1);
 
         mFab.setOnClickListener(v -> {
             refreshData(clickNum);
@@ -88,7 +88,6 @@ public class MeizhiFragment extends Fragment {
 
                     @Override
                     public void onNext(List<Meizhis> meizhises) {
-                        //mMeizhiList.clear();
                         clickNum++;
                         Log.d("ervin","点击次数" + clickNum);
                         mMeizhiList.addAll(meizhises);
@@ -104,6 +103,10 @@ public class MeizhiFragment extends Fragment {
         }
     }
 
-
+    @Override
+    public void onPause() {
+        super.onPause();
+        clickNum = 1;
+    }
 
 }
