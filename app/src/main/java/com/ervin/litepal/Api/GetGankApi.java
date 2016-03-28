@@ -9,7 +9,7 @@ import rx.Observable;
 /**
  * Created by Ervin on 2016/3/24.
  */
-public class GetMeizhiApi {
+public class GetGankApi {
 
     public static Observable<MeizhiEntity> getMeizhiData(int page){
         return RestClient.RestRxClient(RequestConstants.GANK_URL,true).getMeizhiData(page);
