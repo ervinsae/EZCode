@@ -66,6 +66,6 @@ public interface APIService {
             @Path("month") int month,
             @Path("day") int day);//https://gank.io/api/day/2016/02/15*/
 
-    @GET("/data/休息视频/" + 10 + "/{page}")
+    @GET("data/休息视频/" + 10 + "/{page}")
     Observable<VideoEntity> getVedioData(@Path("page") int page);
 }

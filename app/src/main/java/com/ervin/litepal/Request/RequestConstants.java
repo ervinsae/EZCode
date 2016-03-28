@@ -14,5 +14,5 @@ public class RequestConstants {
 
     public static final String DOUBANAPI_URL = "https://api.douban.com/v2/movie/";
 
-    public static final String GANK_URL = "http://gank.avosapps.com/api/";//"http://gank.io.com/api";
+    public static final String GANK_URL = "http://gank.io/api/";//"http://gank.avosapps.com/api/";//
 }

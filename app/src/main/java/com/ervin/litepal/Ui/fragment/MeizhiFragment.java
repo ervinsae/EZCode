@@ -14,16 +14,22 @@ import android.widget.Toast;
 
 import com.ervin.litepal.R;
 import com.ervin.litepal.api.GetGankApi;
+import com.ervin.litepal.model.meizhi.MeizhiEntity;
+import com.ervin.litepal.model.meizhi.VideoEntity;
+import com.ervin.litepal.table.MVideo;
 import com.ervin.litepal.table.Meizhis;
 import com.ervin.litepal.ui.adapter.MeizhiListAdapter;
+import com.ervin.litepal.utils.DateUtils;
 
 import org.litepal.crud.DataSupport;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -71,6 +77,39 @@ public class MeizhiFragment extends Fragment {
 
     private void refreshData(int page) {
 
+        Observable.zip(GetGankApi.getMeizhiData(page),GetGankApi.getVideoData(page),this::mergeDesc)//zip操作符是把两个observable提交的结果，严格按照顺序进行合并，作为参数去调用第三个方法
+                .map(meizhiEntity -> meizhiEntity.results)//map转换类型操作符，将返回的MeizhiEntity类型的数据转成List<Meizhis>类型
+                .flatMap(Observable::from)//flatmap输出一个一对多的数据，它输出的Observable对象才是Subcribe所真正想接收的数据,这里变形为：Observable.from(List<Meizhis>)，观察者将接收到一个个Meizhi对象。
+                .toSortedList((meizhis, meizhis2) -> {//（Returns an Observable that emits a list that contains the items emitted by the source Observable, in a sorted order.将一个个的Meizhi对象根据规则变成list<>）
+                    return meizhis2.publishedAt.compareTo(meizhis.publishedAt);
+                })
+                .doOnNext(this::saveMeizhis)//在观察者接收之前保存数据，数据为MeiZhis,上一条链已经将一个个的meizhi对象封装成了已经排序好了的List。
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())//事件的消费线程在主线程，也就是subscribe里代码所执行的线程
+                .subscribe(new Subscriber<List<Meizhis>>() {
+                    @Override
+                    public void onCompleted() {
+                        Toast.makeText(getActivity(),"data finish loading",Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Toast.makeText(getActivity(),e.getMessage(),Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void onNext(List<Meizhis> meizhises) {
+                        clickNum++;
+                        Log.d("ervin","点击次数" + clickNum);
+                        mMeizhiList.addAll(meizhises);
+                        adpter.notifyDataSetChanged();
+                    }
+                });
+
+
+
+    }
+    private void loadMeizhiData(int page){
         GetGankApi.getMeizhiData(page).subscribeOn(Schedulers.io())
                 .map(meizhiEntity -> meizhiEntity.results)
                 .doOnNext(this::saveMeizhis)
@@ -92,19 +131,57 @@ public class MeizhiFragment extends Fragment {
                         Log.d("ervin","点击次数" + clickNum);
                         mMeizhiList.addAll(meizhises);
                         adpter.notifyDataSetChanged();
+                        loadVideoData(page);
                     }
                 });
-
     }
 
-    private void loadData(){
+    private void loadVideoData(int page){
+        GetGankApi.getVideoData(page).subscribeOn(Schedulers.io())
+                .map(videoEntity -> videoEntity.results)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<List<MVideo>>() {
+                    @Override
+                    public void onCompleted() {
 
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Toast.makeText(getActivity(),"video:" + e.getMessage(),Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void onNext(List<MVideo> mVideos) {
+                        Log.d("ervin","video desc" + mVideos.get(0).desc);
+                    }
+                });
     }
 
     public void saveMeizhis(List<Meizhis> list){
         for(Meizhis meizhi : list){
             //if(DataSupport.findBySQL("select * from meizhis where url = ?"+ meizhi.url) != null) meizhi.save();
         }
+    }
+
+    //合并妹纸和vedio的描述文本
+    public MeizhiEntity mergeDesc(MeizhiEntity mezhi, VideoEntity video){
+        Observable.from(mezhi.results).forEach(meizhis -> {meizhis.desc = meizhis.desc + " " + getFirstVideoDesc(meizhis.publishedAt,video.results);});
+        return mezhi;
+    }
+
+    private int mLastVideoIndex = 0;
+    private String getFirstVideoDesc(Date publishedAt, List<MVideo> results) {
+        String videoDesc = "";
+        for (int i = mLastVideoIndex; i < results.size(); i++) {
+            MVideo video = results.get(i);
+            if (DateUtils.isTheSameDay(publishedAt, video.publishedAt)) {
+                videoDesc = video.desc;
+                mLastVideoIndex = i;
+                break;
+            }
+        }
+        return videoDesc;
     }
 
     @Override
