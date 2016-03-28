@@ -4,9 +4,9 @@ import com.ervin.litepal.model.GitModel;
 import com.ervin.litepal.model.LoginData;
 import com.ervin.litepal.model.User;
 import com.ervin.litepal.model.meizhi.MeizhiEntity;
+import com.ervin.litepal.model.meizhi.VideoEntity;
 import com.ervin.litepal.model.movie.MovieEntity;
 import com.ervin.litepal.request.RequestBody;
-import com.ervin.litepal.table.MVideo;
 
 import java.util.List;
 
@@ -67,5 +67,5 @@ public interface APIService {
             @Path("day") int day);//https://gank.io/api/day/2016/02/15*/
 
     @GET("/data/休息视频/" + 10 + "/{page}")
-    Observable<MVideo> getVedioData(@Path("page") int page);
+    Observable<VideoEntity> getVedioData(@Path("page") int page);
 }

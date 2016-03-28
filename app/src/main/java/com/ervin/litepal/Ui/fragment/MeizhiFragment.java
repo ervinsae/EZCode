@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.ervin.litepal.R;
-import com.ervin.litepal.api.GetMeizhiApi;
+import com.ervin.litepal.api.GetGankApi;
 import com.ervin.litepal.table.Meizhis;
 import com.ervin.litepal.ui.adapter.MeizhiListAdapter;
 
@@ -71,7 +71,7 @@ public class MeizhiFragment extends Fragment {
 
     private void refreshData(int page) {
 
-        GetMeizhiApi.getMeizhiData(page).subscribeOn(Schedulers.io())
+        GetGankApi.getMeizhiData(page).subscribeOn(Schedulers.io())
                 .map(meizhiEntity -> meizhiEntity.results)
                 .doOnNext(this::saveMeizhis)
                 .observeOn(AndroidSchedulers.mainThread())
@@ -94,6 +94,10 @@ public class MeizhiFragment extends Fragment {
                         adpter.notifyDataSetChanged();
                     }
                 });
+
+    }
+
+    private void loadData(){
 
     }
 

@@ -2,6 +2,7 @@ package com.ervin.litepal.ui.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,7 +48,7 @@ public class MeizhiListAdapter extends RecyclerView.Adapter<MeizhiListAdapter.Vi
         holder.titleView.setText(text);
         holder.card.setTag(meizhi.desc);
 
-        //Picasso.with(mContext).load(meizhi.url).resize(holder.meizhiView.getWidth(),holder.meizhiView.getHeight()).centerCrop().into(holder.meizhiView);
+        //Picasso.with(mContext).load(meizhi.url).resize(50,50).centerCrop().into(holder.meizhiView);
 
         Glide.with(mContext)
                 .load(meizhi.url)
@@ -86,7 +87,7 @@ public class MeizhiListAdapter extends RecyclerView.Adapter<MeizhiListAdapter.Vi
 
         @Override
         public void onClick(View v) {
-
+            Log.d("ervin",v.getTag()+"clicked");
         }
     }
 }
