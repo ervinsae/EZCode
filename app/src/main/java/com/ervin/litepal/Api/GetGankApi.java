@@ -1,6 +1,7 @@
 package com.ervin.litepal.api;
 
 import com.ervin.litepal.model.meizhi.MeizhiEntity;
+import com.ervin.litepal.model.meizhi.VideoEntity;
 import com.ervin.litepal.request.RequestConstants;
 import com.ervin.litepal.request.RestClient;
 
@@ -15,4 +16,7 @@ public class GetGankApi {
         return RestClient.RestRxClient(RequestConstants.GANK_URL,true).getMeizhiData(page);
     }
 
+    public static Observable<VideoEntity> getVideoData(int page){
+        return RestClient.RestRxClient(RequestConstants.GANK_URL,true).getVedioData(page);
+    }
 }

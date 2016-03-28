@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.ervin.litepal.R;
 import com.ervin.litepal.api.GetGankApi;
+import com.ervin.litepal.table.MVideo;
 import com.ervin.litepal.table.Meizhis;
 import com.ervin.litepal.ui.adapter.MeizhiListAdapter;
 
@@ -92,13 +93,32 @@ public class MeizhiFragment extends Fragment {
                         Log.d("ervin","点击次数" + clickNum);
                         mMeizhiList.addAll(meizhises);
                         adpter.notifyDataSetChanged();
+                        loadData();
                     }
                 });
 
     }
 
     private void loadData(){
+        GetGankApi.getVideoData(1).subscribeOn(Schedulers.io())
+                .map(videoEntity -> videoEntity.results)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<List<MVideo>>() {
+                    @Override
+                    public void onCompleted() {
 
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Toast.makeText(getActivity(),"video:" + e.getMessage(),Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void onNext(List<MVideo> mVideos) {
+                        Log.d("ervin","video desc" + mVideos.get(0).desc);
+                    }
+                });
     }
 
     public void saveMeizhis(List<Meizhis> list){
