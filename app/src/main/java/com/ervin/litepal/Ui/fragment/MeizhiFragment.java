@@ -84,7 +84,7 @@ public class MeizhiFragment extends Fragment {
                     return meizhis2.publishedAt.compareTo(meizhis.publishedAt);
                 })
                 .doOnNext(this::saveMeizhis)//在观察者接收之前保存数据，数据为MeiZhis,上一条链已经将一个个的meizhi对象封装成了已经排序好了的List。
-                .subscribeOn(Schedulers.io())
+                .subscribeOn(Schedulers.io())//事件产生的线程（在IO线程调用subscribe()）
                 .observeOn(AndroidSchedulers.mainThread())//事件的消费线程在主线程，也就是subscribe里代码所执行的线程
                 .subscribe(new Subscriber<List<Meizhis>>() {
                     @Override
@@ -161,6 +161,7 @@ public class MeizhiFragment extends Fragment {
     public void saveMeizhis(List<Meizhis> list){
         for(Meizhis meizhi : list){
             //if(DataSupport.findBySQL("select * from meizhis where url = ?"+ meizhi.url) != null) meizhi.save();
+
         }
     }
 

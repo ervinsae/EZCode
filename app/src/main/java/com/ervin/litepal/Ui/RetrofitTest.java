@@ -281,7 +281,7 @@ public class RetrofitTest extends BaseActivity implements View.OnClickListener{
 
             @Override
             public void onError(Throwable e) {
-
+                Log.d("ervin",e.getLocalizedMessage());
             }
 
             @Override
@@ -289,6 +289,9 @@ public class RetrofitTest extends BaseActivity implements View.OnClickListener{
                 Toast.makeText(RetrofitTest.this,s,Toast.LENGTH_SHORT).show();
             }
         });
+
+        Observable.defer(() -> Observable.just(System.currentTimeMillis()));//每次发射都重新生成一个新的Observable
+        Observable.just(System.currentTimeMillis());//就是发射当前的数据
     }
 
 }
