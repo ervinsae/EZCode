@@ -178,6 +178,7 @@ public class MeizhiFragment extends Fragment {
             MVideo video = results.get(i);
             if (DateUtils.isTheSameDay(publishedAt, video.publishedAt)) {
                 videoDesc = video.desc;
+                Log.i("ervin",videoDesc);
                 mLastVideoIndex = i;
                 break;
             }
