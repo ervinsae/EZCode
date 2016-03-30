@@ -53,6 +53,7 @@ public class RestClient {
         client = new OkHttpClient();
         client.setConnectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
         client.setReadTimeout(DEFAULT_TIMEOUT,TimeUnit.SECONDS);
+        client.setWriteTimeout(DEFAULT_TIMEOUT,TimeUnit.SECONDS);
     }
 
 }
