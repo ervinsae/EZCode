@@ -117,9 +117,9 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener,L
                 startActivity(intent);
                 break;
             case 4:
-                Intent intent2  = new Intent(HomeActivity.this,SettingActivity.class);
-                startActivity(intent2);
-                //switchFragment(position,settingFragment);
+                /*Intent intent2  = new Intent(HomeActivity.this,SettingActivity.class);
+                startActivity(intent2);*/
+                switchFragment(position,settingFragment);
                 break;
             case 5:
                 /*Intent intent3 = new Intent(HomeActivity.this,AboutActivity.class);
