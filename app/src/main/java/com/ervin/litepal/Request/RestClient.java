@@ -1,5 +1,7 @@
 package com.ervin.litepal.request;
 
+import android.util.Log;
+
 import com.ervin.litepal.api.APIService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -79,7 +81,7 @@ public class RestClient {
             } catch (KeyManagementException e) {
                 e.printStackTrace();
             }
-
+            Log.i("RestClient","request is a https");
         }
     }
 

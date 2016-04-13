@@ -61,6 +61,8 @@ public class RetrofitTest extends BaseActivity implements View.OnClickListener{
     TextView test_publishSuject;
     @Bind(R.id.test_douban_api)
     TextView test_douban;
+    @Bind(R.id.test_kotlin)
+    TextView test_kotlin;
 
 
     private NotificationReceiver nReceiver;
@@ -79,6 +81,7 @@ public class RetrofitTest extends BaseActivity implements View.OnClickListener{
         test_notity.setOnClickListener(this);
         test_publishSuject.setOnClickListener(this);
         test_douban.setOnClickListener(this);
+        test_kotlin.setOnClickListener(this);
 
         nReceiver = new NotificationReceiver();
         IntentFilter filter = new IntentFilter();
@@ -223,6 +226,9 @@ public class RetrofitTest extends BaseActivity implements View.OnClickListener{
                         Log.i("ervin",t.getMessage());
                     }
                 });
+                break;
+            case R.id.test_kotlin:
+                startActivity(new Intent(this,KotlinActivity.class));
                 break;
         }
     }
