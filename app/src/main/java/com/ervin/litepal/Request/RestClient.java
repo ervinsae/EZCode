@@ -5,7 +5,16 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.squareup.okhttp.OkHttpClient;
 
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
 import java.util.concurrent.TimeUnit;
+
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSocketFactory;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 
 import retrofit.GsonConverterFactory;
 import retrofit.Retrofit;
@@ -25,7 +34,7 @@ public class RestClient {
             .create();
 
     public RestClient(String url){
-
+        checkHttps(url);
         setTimeOut();
         Retrofit retrofit = new Retrofit.Builder().client(client).baseUrl(url).addConverterFactory(GsonConverterFactory.create()).build();
 
@@ -34,6 +43,7 @@ public class RestClient {
 
     public static APIService RestRxClient(String url,boolean fromatjson){
         Retrofit retrofit;
+        checkHttps(url);
         setTimeOut();
         if(fromatjson) {
             retrofit = new Retrofit.Builder().client(client).baseUrl(url).addConverterFactory(GsonConverterFactory.create(gson)).addCallAdapterFactory(RxJavaCallAdapterFactory.create()).build();
@@ -54,6 +64,42 @@ public class RestClient {
         client.setConnectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
         client.setReadTimeout(DEFAULT_TIMEOUT,TimeUnit.SECONDS);
         client.setWriteTimeout(DEFAULT_TIMEOUT,TimeUnit.SECONDS);
+    }
+
+    public static void checkHttps(String url){
+        if (url.startsWith("https")) {
+            try {
+                SSLContext sslContext = SSLContext.getInstance("SSL");
+                sslContext.init(null, trustManagers, new java.security.SecureRandom());
+                // Create an ssl socket factory with our all-trusting manager
+                SSLSocketFactory sslSocketFactory = sslContext.getSocketFactory();
+                client.setSslSocketFactory(sslSocketFactory);
+            } catch (NoSuchAlgorithmException e) {
+                e.printStackTrace();
+            } catch (KeyManagementException e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+
+    //增加一个自制签名证书 覆盖google默认的证书检查机制
+    static TrustManager[] trustManagers = new TrustManager[]{new TrustEveryOneManager()};
+    static class TrustEveryOneManager implements X509TrustManager{
+        @Override
+        public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {
+
+        }
+
+        @Override
+        public void checkServerTrusted(X509Certificate[] chain, String authType) throws CertificateException {
+
+        }
+
+        @Override
+        public X509Certificate[] getAcceptedIssuers() {
+            return null;
+        }
     }
 
 }
