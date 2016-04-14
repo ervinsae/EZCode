@@ -1,5 +1,6 @@
 package com.ervin.litepal.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -18,8 +19,12 @@ import com.ervin.litepal.model.meizhi.MeizhiEntity;
 import com.ervin.litepal.model.meizhi.VideoEntity;
 import com.ervin.litepal.table.MVideo;
 import com.ervin.litepal.table.Meizhis;
+import com.ervin.litepal.ui.MeizhiViewActivity;
 import com.ervin.litepal.ui.adapter.MeizhiListAdapter;
+import com.ervin.litepal.ui.adapter.TouchMeizhiListener;
 import com.ervin.litepal.utils.DateUtils;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 import org.litepal.crud.DataSupport;
 
@@ -66,6 +71,7 @@ public class MeizhiFragment extends Fragment {
         mRecycleview.setLayoutManager(layoutManager);
 
         adpter = new MeizhiListAdapter(getActivity(),mMeizhiList);
+        adpter.setOnMeizhiTouchListener(new MeizhiListener());
         mRecycleview.setAdapter(adpter);
 
         refreshData(1);
@@ -184,6 +190,26 @@ public class MeizhiFragment extends Fragment {
             }
         }
         return videoDesc;
+    }
+
+    public class MeizhiListener implements TouchMeizhiListener{
+
+        @Override
+        public void onClick(View view, View meizhiView, Meizhis meizhi) {
+            Picasso.with(getActivity()).load(meizhi.url).fetch(new Callback() {
+                @Override
+                public void onSuccess() {
+                    Intent intent = new Intent(getActivity(), MeizhiViewActivity.class);
+                    intent.putExtra("url",meizhi.url);
+                    startActivity(intent);
+                }
+
+                @Override
+                public void onError() {
+
+                }
+            });
+        }
     }
 
     @Override
