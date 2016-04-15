@@ -12,14 +12,15 @@ import org.json.JSONObject;
 
 import java.util.Map;
 
-import retrofit.Call;
-import retrofit.Callback;
+import retrofit2.Call;
+import retrofit2.Callback;
+
 
 /**
  * Created by Ervin on 2015/11/12.
  */
 public class LoginApi {
-    public static void request(Map<String,Object> params,Callback<LoginData> callback){
+    public static void request(Map<String,Object> params, Callback<LoginData> callback){
         RestClient restClient = new RestClient(RequestConstants.BASE_URL);
         JSONObject json =  new JSONObject(params);
 

@@ -5,7 +5,6 @@ import android.util.Log;
 import com.ervin.litepal.api.APIService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.squareup.okhttp.OkHttpClient;
 
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
@@ -18,9 +17,11 @@ import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
-import retrofit.GsonConverterFactory;
-import retrofit.Retrofit;
-import retrofit.RxJavaCallAdapterFactory;
+import okhttp3.OkHttpClient;
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 
 /**
  * Created by Ervin on 2015/11/12.
@@ -28,7 +29,9 @@ import retrofit.RxJavaCallAdapterFactory;
 public class RestClient {
     private static APIService apiService;
     private static final int DEFAULT_TIMEOUT = 5;
+    static OkHttpClient.Builder builder;
     static OkHttpClient client;
+
 
     final static Gson gson = new GsonBuilder()
             .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
@@ -61,11 +64,12 @@ public class RestClient {
     }
 
     public static void setTimeOut(){
-        //手动创建一个OkHttpClient并设置超时时间
-        client = new OkHttpClient();
-        client.setConnectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
-        client.setReadTimeout(DEFAULT_TIMEOUT,TimeUnit.SECONDS);
-        client.setWriteTimeout(DEFAULT_TIMEOUT,TimeUnit.SECONDS);
+        //手动创建一个OkHttpClient并设置超时时间(注意Ok3之后改动很大)
+        builder = new OkHttpClient.Builder();
+        builder.connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
+        builder.readTimeout(DEFAULT_TIMEOUT,TimeUnit.SECONDS);
+        builder.writeTimeout(DEFAULT_TIMEOUT,TimeUnit.SECONDS);
+
     }
 
     public static void checkHttps(String url){
@@ -75,7 +79,7 @@ public class RestClient {
                 sslContext.init(null, trustManagers, new java.security.SecureRandom());
                 // Create an ssl socket factory with our all-trusting manager
                 SSLSocketFactory sslSocketFactory = sslContext.getSocketFactory();
-                client.setSslSocketFactory(sslSocketFactory);
+                builder.sslSocketFactory(sslSocketFactory);
             } catch (NoSuchAlgorithmException e) {
                 e.printStackTrace();
             } catch (KeyManagementException e) {
@@ -83,6 +87,7 @@ public class RestClient {
             }
             Log.i("RestClient","request is a https");
         }
+        client = builder.build();
     }
 
     //增加一个自制签名证书 覆盖google默认的证书检查机制

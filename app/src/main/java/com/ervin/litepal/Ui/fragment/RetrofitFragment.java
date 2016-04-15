@@ -30,9 +30,9 @@ import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import retrofit.Callback;
-import retrofit.Response;
-import retrofit.Retrofit;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -108,7 +108,7 @@ public class RetrofitFragment extends Fragment {
     private void initData() {
         GetMoviesApi.request(0, 15, new Callback<MovieEntity>() {
             @Override
-            public void onResponse(Response<MovieEntity> response, Retrofit retrofit) {
+            public void onResponse(Call<MovieEntity> call, Response<MovieEntity> response) {
                 if(response != null){
                     if(response.body() != null){
                         MovieEntity movies = response.body();
@@ -117,11 +117,10 @@ public class RetrofitFragment extends Fragment {
                         rvMovie.setAdapter(adapter);
                     }
                 }
-
             }
 
             @Override
-            public void onFailure(Throwable t) {
+            public void onFailure(Call<MovieEntity> call, Throwable t) {
                 Log.d("ervin",t.getMessage());
             }
         });
@@ -179,8 +178,9 @@ public class RetrofitFragment extends Fragment {
         params.put("mode", "0");
 
         LoginApi.request(params, new Callback<LoginData>() {
+
             @Override
-            public void onResponse(Response<LoginData> response, Retrofit retrofit) {
+            public void onResponse(Call<LoginData> call, Response<LoginData> response) {
                 Log.i("ervin:onResponse",response.toString());
                 try {
                     Log.i("ervin:onResponse", response.errorBody().string().toString());
@@ -193,7 +193,7 @@ public class RetrofitFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Throwable t) {
+            public void onFailure(Call<LoginData> call, Throwable t) {
                 Log.i("ervin:onFailure",t.toString());
             }
         });

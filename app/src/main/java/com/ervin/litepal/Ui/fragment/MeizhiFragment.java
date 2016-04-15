@@ -196,6 +196,11 @@ public class MeizhiFragment extends Fragment {
 
         @Override
         public void onClick(View view, View meizhiView, Meizhis meizhi) {
+            /*
+            .fetch() will asynchronously load the image in a background thread, but will neither display it in an ImageView, nor return the bitmap.
+            This method only saves the image to the disk and memory caches. It could be used to fill up the image cache in the background,
+            if you know you'll need the image shortly after and want to reduce the loading times.
+             */
             Picasso.with(getActivity()).load(meizhi.url).fetch(new Callback() {
                 @Override
                 public void onSuccess() {

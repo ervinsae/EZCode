@@ -33,3 +33,9 @@
 -keepclasseswithmembernames class * {
     @butterknife.* <methods>;
 }
+
+# Retrofit混淆方案
+-dontwarn retrofit.**
+-keep class retrofit.** { *; }
+-keepattributes Signature
+-keepattributes Exceptions
