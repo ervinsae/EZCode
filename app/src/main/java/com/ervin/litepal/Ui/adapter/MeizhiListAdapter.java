@@ -1,8 +1,8 @@
 package com.ervin.litepal.ui.adapter;
 
 import android.content.Context;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +25,7 @@ public class MeizhiListAdapter extends RecyclerView.Adapter<MeizhiListAdapter.Vi
 
     private List<Meizhis> mList;
     private Context mContext;
+    private TouchMeizhiListener listener;
 
     public MeizhiListAdapter(Context context, List<Meizhis> meizhiList) {
         mList = meizhiList;
@@ -48,6 +49,7 @@ public class MeizhiListAdapter extends RecyclerView.Adapter<MeizhiListAdapter.Vi
         holder.titleView.setText(text);
         holder.card.setTag(meizhi.desc);
 
+        ViewCompat.setTransitionName(holder.meizhiView,String.valueOf(position) + "_image");
         //Picasso.with(mContext).load(meizhi.url).resize(50,50).centerCrop().into(holder.meizhiView);
 
         Glide.with(mContext)
@@ -81,13 +83,18 @@ public class MeizhiListAdapter extends RecyclerView.Adapter<MeizhiListAdapter.Vi
             card = itemView;
             ButterKnife.bind(this, itemView);
             meizhiView.setOnClickListener(this);
-            card.setOnClickListener(this);
+            //card.setOnClickListener(this);
             meizhiView.setOriginalSize(50, 50);
         }
 
         @Override
         public void onClick(View v) {
-            Log.d("ervin",v.getTag()+"clicked");
+            //Log.d("ervin",v.getTag()+"clicked");
+            listener.onClick(v,meizhiView,meizhi);
         }
+    }
+
+    public void setOnMeizhiTouchListener(TouchMeizhiListener listener){
+        this.listener = listener;
     }
 }

@@ -4,7 +4,7 @@ import com.ervin.litepal.model.movie.MovieEntity;
 import com.ervin.litepal.request.RequestConstants;
 import com.ervin.litepal.request.RestClient;
 
-import retrofit.Callback;
+import retrofit2.Callback;
 import rx.Observable;
 
 /**

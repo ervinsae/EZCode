@@ -10,15 +10,15 @@ import com.ervin.litepal.request.RequestBody;
 
 import java.util.List;
 
-import retrofit.Call;
-import retrofit.Callback;
-import retrofit.http.Body;
-import retrofit.http.Field;
-import retrofit.http.FormUrlEncoded;
-import retrofit.http.GET;
-import retrofit.http.POST;
-import retrofit.http.Path;
-import retrofit.http.Query;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.http.Body;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
+import retrofit2.http.POST;
+import retrofit2.http.Path;
+import retrofit2.http.Query;
 import rx.Observable;
 
 /**
@@ -28,7 +28,7 @@ public interface APIService {
 
     @FormUrlEncoded
     @POST("appUsersLogin")
-    Call<LoginData> getLoginData(@Field("type") String type,@Field("data") String data); //2.0的写法
+    Call<LoginData> getLoginData(@Field("type") String type, @Field("data") String data); //2.0的写法
     //void getLoginData(@Field("phoneNumber") String phoneNumber,@Field("password") String password,@Field("mode") String mode, Callback<LoginData> callback);
 
     @GET("/users/{user}")

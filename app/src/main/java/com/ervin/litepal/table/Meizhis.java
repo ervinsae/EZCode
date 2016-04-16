@@ -1,5 +1,7 @@
 package com.ervin.litepal.table;
 
+import com.google.gson.annotations.SerializedName;
+
 import org.litepal.annotation.Column;
 import org.litepal.crud.DataSupport;
 
@@ -15,8 +17,10 @@ public class Meizhis extends DataSupport {
 
     public String type;
 
+    @SerializedName("desc")  //Gson注解属性 Gson2.4注解新增加了一个属性alternate,可以设置多个别名（如下）
     public String desc;
 
+    @SerializedName(value = "who",alternate = {"me","she","it"})
     public String who;
 
     public boolean used;

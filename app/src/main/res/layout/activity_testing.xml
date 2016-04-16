@@ -86,11 +86,11 @@
         <View style="@style/SeparationLine" />
 
         <TextView
-            android:id="@+id/send_sportdatasuccess"
+            android:id="@+id/test_kotlin"
             android:layout_width="fill_parent"
             android:layout_height="40dp"
             android:gravity="center"
-            android:text="同步运动数据成功" />
+            android:text="Kotlin测试" />
 
         <View style="@style/SeparationLine" />
 

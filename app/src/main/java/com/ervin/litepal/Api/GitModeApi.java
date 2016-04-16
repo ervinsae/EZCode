@@ -1,14 +1,15 @@
 package com.ervin.litepal.api;
 
 import com.ervin.litepal.model.GitModel;
+import com.ervin.litepal.model.User;
 import com.ervin.litepal.request.RequestConstants;
 import com.ervin.litepal.request.RestClient;
-import com.ervin.litepal.model.User;
 
 import java.util.List;
 
-import retrofit.Call;
-import retrofit.Callback;
+import retrofit2.Call;
+import retrofit2.Callback;
+
 
 /**
  * Created by Ervin on 2015/11/20.

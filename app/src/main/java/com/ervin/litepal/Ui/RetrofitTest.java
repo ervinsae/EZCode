@@ -33,9 +33,9 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import retrofit.Callback;
-import retrofit.Response;
-import retrofit.Retrofit;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import rx.Observable;
 import rx.Observer;
 import rx.subjects.PublishSubject;
@@ -61,6 +61,8 @@ public class RetrofitTest extends BaseActivity implements View.OnClickListener{
     TextView test_publishSuject;
     @Bind(R.id.test_douban_api)
     TextView test_douban;
+    @Bind(R.id.test_kotlin)
+    TextView test_kotlin;
 
 
     private NotificationReceiver nReceiver;
@@ -79,6 +81,7 @@ public class RetrofitTest extends BaseActivity implements View.OnClickListener{
         test_notity.setOnClickListener(this);
         test_publishSuject.setOnClickListener(this);
         test_douban.setOnClickListener(this);
+        test_kotlin.setOnClickListener(this);
 
         nReceiver = new NotificationReceiver();
         IntentFilter filter = new IntentFilter();
@@ -93,7 +96,7 @@ public class RetrofitTest extends BaseActivity implements View.OnClickListener{
                 Log.d("retrofit","clicked");
                 GitModeApi.request(new Callback<List<GitModel>>() {
                     @Override
-                    public void onResponse(Response<List<GitModel>> response, Retrofit retrofit) {
+                    public void onResponse(Call<List<GitModel>> call, Response<List<GitModel>> response) {
                         if(response != null){
                             List<GitModel> dataList = response.body();
                             for(GitModel gitModel : dataList){
@@ -110,16 +113,17 @@ public class RetrofitTest extends BaseActivity implements View.OnClickListener{
                     }
 
                     @Override
-                    public void onFailure(Throwable t) {
+                    public void onFailure(Call<List<GitModel>> call, Throwable t) {
 
                     }
+
                 });
                 break;
             case R.id.ref_get2:
                 Log.d("retrofit2", "clicked");
                 GitModeApi.request("basil2style", new Callback<GitModel>() {
                     @Override
-                    public void onResponse(Response<GitModel> response, Retrofit retrofit) {
+                    public void onResponse(Call<GitModel> call, Response<GitModel> response) {
                         if (response != null) {
                             GitModel gitModel = response.body();
                             Log.d("retrofit", gitModel.getName());
@@ -135,9 +139,9 @@ public class RetrofitTest extends BaseActivity implements View.OnClickListener{
                     }
 
                     @Override
-                    public void onFailure(Throwable t) {
-
+                    public void onFailure(Call<GitModel> call, Throwable t) {
                     }
+
                 });
                 break;
 
@@ -151,16 +155,17 @@ public class RetrofitTest extends BaseActivity implements View.OnClickListener{
                 body.mode = "0";
                 LoginApi.request(RequestConstants.LOGIN_URL,body, new Callback<LoginData>() {
                     @Override
-                    public void onResponse(Response<LoginData> response, Retrofit retrofit) {
+                    public void onResponse(Call<LoginData> call, Response<LoginData> response) {
                         if (response != null) {
                             Log.d("retrofit", response.body().phoneNumber);
                         }
                     }
 
                     @Override
-                    public void onFailure(Throwable t) {
+                    public void onFailure(Call<LoginData> call, Throwable t) {
 
                     }
+
                 });
                 break;
             case R.id.ref_post: //失败
@@ -168,14 +173,14 @@ public class RetrofitTest extends BaseActivity implements View.OnClickListener{
                 User user = new User(2, "defunkt");
                 GitModeApi.postRequest(user, new Callback<GitModel>() {
                     @Override
-                    public void onResponse(Response<GitModel> response, Retrofit retrofit) {
+                    public void onResponse(Call<GitModel> call, Response<GitModel> response) {
                         if (response != null) {
                             Log.d("retrofit", response.body().getName());
                         }
                     }
 
                     @Override
-                    public void onFailure(Throwable t) {
+                    public void onFailure(Call<GitModel> call, Throwable t) {
 
                     }
                 });
@@ -204,7 +209,7 @@ public class RetrofitTest extends BaseActivity implements View.OnClickListener{
             case R.id.test_douban_api://获取豆瓣top200电影数据
                 GetMoviesApi.request(0, 10, new Callback<MovieEntity>() {
                     @Override
-                    public void onResponse(Response<MovieEntity> response, Retrofit retrofit) {
+                    public void onResponse(Call<MovieEntity> call, Response<MovieEntity> response) {
                         if(response != null) {
                             Log.i("ervin","返回码："+response.code());
                             if(response.body()!=null) {
@@ -219,10 +224,14 @@ public class RetrofitTest extends BaseActivity implements View.OnClickListener{
                     }
 
                     @Override
-                    public void onFailure(Throwable t) {
-                        Log.i("ervin",t.getMessage());
+                    public void onFailure(Call<MovieEntity> call, Throwable t) {
+
                     }
+
                 });
+                break;
+            case R.id.test_kotlin:
+                startActivity(new Intent(this,KotlinActivity.class));
                 break;
         }
     }
