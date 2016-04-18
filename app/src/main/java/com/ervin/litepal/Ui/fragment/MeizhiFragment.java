@@ -51,7 +51,7 @@ public class MeizhiFragment extends Fragment {
 
     private MeizhiListAdapter adpter;
     private static List<Meizhis> mMeizhiList;
-    private int clickNum = 1;
+    private static int clickNum = 1;
 
 
     @Nullable

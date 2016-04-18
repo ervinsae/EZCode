@@ -78,4 +78,9 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:3.6.1'
 
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.4-SNAPSHOT'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-SNAPSHOT'
+    /*testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'*/
+
 }
