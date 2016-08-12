@@ -9,6 +9,7 @@ import java.lang.ref.WeakReference;
 
 /**
  * Created by Ervin on 2016/4/13.
+ * 一个Handler正确的写法
  */
 public class HandlerActivity extends BaseActivity {
 
@@ -50,5 +51,11 @@ public class HandlerActivity extends BaseActivity {
         mHandler.postDelayed(sRunnable,1000 * 60 * 10);
 
         finish();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mHandler.removeCallbacksAndMessages(null);
     }
 }

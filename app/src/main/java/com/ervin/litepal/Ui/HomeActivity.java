@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.View;
 import android.view.ViewGroup;
@@ -166,7 +167,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener,L
         public View getView(int position, View convertView, ViewGroup parent) {
             convertView = View.inflate(HomeActivity.this,R.layout.menu_list_item,null);
             TextView tvItem = (TextView) convertView.findViewById(R.id.tv_menu_item);
-            tvItem.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(imageIcon[position]),null,null,null);
+            tvItem.setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(convertView.getContext(),imageIcon[position]),null,null,null);
             tvItem.setText(getResources().getString(imageStr[position]));
             return convertView;
         }

@@ -3,6 +3,8 @@ package com.ervin.litepal;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.squareup.leakcanary.LeakCanary;
+
 import org.litepal.LitePalApplication;
 import org.litepal.tablemanager.Connector;
 
@@ -26,5 +28,7 @@ public class App extends LitePalApplication {
         super.onCreate();
         instance = this;
         SQLiteDatabase db = Connector.getDatabase();//建表
+
+        LeakCanary.install(this);
     }
 }
