@@ -6,7 +6,9 @@ package com.ervin.litepal.request;
 public class RequestConstants {
 
     @Deprecated
-    public static final String BASE_URL = "http://114.215.121.190/service_im_test/";
+    public static final String BASE_URL = "http://114.215.121.190/service_im_test/";//加密
+
+    public static final String API_BASE_URL = "http://114.215.121.190/service_im/";//不加密
 
     public static final String LOGIN_URL = "appUsersLogin";
 

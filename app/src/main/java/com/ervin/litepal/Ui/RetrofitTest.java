@@ -38,6 +38,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import rx.Observable;
 import rx.Observer;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 import rx.subjects.PublishSubject;
 
 /**
@@ -145,28 +148,8 @@ public class RetrofitTest extends BaseActivity implements View.OnClickListener{
                 });
                 break;
 
-            case R.id.ref_login: //失败
-                Log.d("retrofit3", "clicked");
-                Md5 md5 = new Md5();
-                String psw = md5.getMD5Str("123456");
-                RequestBody body = new RequestBody();
-                body.phoneNumber = "15820789114";
-                body.password = psw;
-                body.mode = "0";
-                LoginApi.request(RequestConstants.LOGIN_URL,body, new Callback<LoginData>() {
-                    @Override
-                    public void onResponse(Call<LoginData> call, Response<LoginData> response) {
-                        if (response != null) {
-                            Log.d("retrofit", response.body().phoneNumber);
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<LoginData> call, Throwable t) {
-
-                    }
-
-                });
+            case R.id.ref_login:
+                //LoginTest1();//失败
                 break;
             case R.id.ref_post: //失败
                 Log.d("retrofit4", "clicked");
@@ -236,6 +219,30 @@ public class RetrofitTest extends BaseActivity implements View.OnClickListener{
         }
     }
 
+    private void LoginTest1() {//失败
+        Log.d("retrofit3", "clicked");
+        Md5 md5 = new Md5();
+        String psw = md5.getMD5Str("123456");
+        RequestBody body = new RequestBody();
+        body.phoneNumber = "15820789114";
+        body.password = psw;
+        body.mode = "0";
+        LoginApi.request(RequestConstants.LOGIN_URL,body, new Callback<LoginData>() {
+            @Override
+            public void onResponse(Call<LoginData> call, Response<LoginData> response) {
+                if (response != null) {
+                    Log.d("retrofit", response.body().phoneNumber);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<LoginData> call, Throwable t) {
+
+            }
+
+        });
+    }
+
     class NotificationReceiver extends BroadcastReceiver {
 
         @Override
@@ -302,5 +309,32 @@ public class RetrofitTest extends BaseActivity implements View.OnClickListener{
         Observable.defer(() -> Observable.just(System.currentTimeMillis()));//每次发射都重新生成一个新的Observable
         Observable.just(System.currentTimeMillis());//就是发射当前的数据
     }
+
+    public void RxjavaEx2(){
+        Observable.create(new Observable.OnSubscribe<String>() {
+            @Override
+            public void call(Subscriber<? super String> subscriber) {
+
+            }
+        }).observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .subscribe(new Subscriber<String>() {
+                @Override
+                public void onCompleted() {
+
+                }
+
+                @Override
+                public void onError(Throwable e) {
+
+                }
+
+                @Override
+                public void onNext(String s) {
+
+                }
+            });
+    }
+
 
 }

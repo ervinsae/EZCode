@@ -17,9 +17,19 @@ buildscript{
 
 
 android {
+    signingConfigs {
+        release {
+            keyAlias 'Ervin'
+            keyPassword '7235428'
+            storeFile file('keystore.jks')
+            storePassword '7235428'
+        }
+        debug {
+            storeFile file('debug.keystore')
+        }
+    }
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
-
     defaultConfig {
         applicationId "com.ervin.litepal"
         minSdkVersion 15
@@ -31,18 +41,18 @@ android {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
-        debug{
+        debug {
             minifyEnabled false
+            signingConfig signingConfigs.debug
         }
     }
-
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
-    sourceSets{
+    sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
 }
@@ -57,10 +67,8 @@ dependencies {
     compile 'com.squareup.retrofit2:converter-gson:2.0.0'
     compile 'com.squareup.retrofit2:adapter-rxjava:2.0.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
-
     compile 'com.google.code.gson:gson:2.4'
     compile 'com.jakewharton:butterknife:7.0.1'
-
     compile 'com.android.support:cardview-v7:23.1.1'
     compile 'com.android.support:design:23.+'
     compile 'com.android.support:appcompat-v7:23.1.1'
@@ -68,19 +76,13 @@ dependencies {
     compile 'io.reactivex:rxjava:1.0.14'
     compile 'io.reactivex:rxandroid:1.0.1'
     compile 'com.zzhoujay.materialcolors:materialcolors:1.0.0'
-
     compile 'com.daasuu:EasingInterpolator:1.0.0'
-
-
-
     compile 'com.wang.avi:library:1.0.5'
     compile 'com.nineoldandroids:library:2.4.0'
     compile 'com.github.bumptech.glide:glide:3.6.1'
-
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.4-SNAPSHOT'
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-SNAPSHOT'
     /*testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'*/
-
 }

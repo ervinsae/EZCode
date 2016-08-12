@@ -17,10 +17,7 @@ import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
-import okhttp3.CipherSuite;
-import okhttp3.ConnectionSpec;
-import okhttp3.OkHttpClient;
-import okhttp3.TlsVersion;
+import okhttp3.*;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -69,6 +66,7 @@ public class RestClient {
     public static void checkHttps(String url){
 
         builder = new OkHttpClient.Builder();
+        builder.addInterceptor(new LoggingInterceptor());//
         builder.connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
         builder.readTimeout(DEFAULT_TIMEOUT,TimeUnit.SECONDS);
         builder.writeTimeout(DEFAULT_TIMEOUT,TimeUnit.SECONDS);
