@@ -13,8 +13,15 @@ public class User {
     @SerializedName("name")
     String mName;
 
-    public User(int id, String name ) {
+    @SerializedName("avatarUrl")
+    public String url;
+
+    public User(int id, String name) {
         this.mId = id;
         this.mName = name;
+    }
+
+    public String getName() {
+        return this.mName;
     }
 }
