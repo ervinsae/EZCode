@@ -23,6 +23,7 @@ import com.ervin.litepal.ui.fragment.MeizhiFragment;
 import com.ervin.litepal.ui.fragment.ModeFragment;
 import com.ervin.litepal.ui.fragment.RetrofitFragment;
 import com.ervin.litepal.ui.fragment.SettingFragment;
+import com.ervin.litepal.ui.widget.CircleImageView;
 
 /**
  * Created by Ervin on 2015/12/19.
@@ -45,6 +46,8 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener,L
     private SettingFragment settingFragment;
     private RetrofitFragment retrofitFragment;
     private MeizhiFragment meizhiFragment;
+
+    private CircleImageView ivAavatar;
 
     private int imageIcon[] = {R.mipmap.ic_navview_explore,R.mipmap.ic_navview_map,R.mipmap.ic_navview_my_schedule,
     R.mipmap.ic_navview_play_circle_fill,R.mipmap.ic_navview_social,R.mipmap.ic_navview_settings,R.mipmap.ic_navview_video_library};
@@ -75,6 +78,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener,L
     }
 
     private void initView() {
+        ivAavatar = (CircleImageView) findViewById(R.id.iv_avatar);
         drawer =  findViewById(R.id.left_drawer);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerlayout);
         menuList = (ListView) findViewById(R.id.menu_list);
@@ -86,6 +90,10 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener,L
         switch (v.getId()){
             case R.id.show_drawer:
                 menuSetting();
+                break;
+            case R.id.iv_avatar:
+                Intent intent = new Intent(this,ProfileActivity.class);
+                startActivity(intent);
                 break;
         }
     }

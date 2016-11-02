@@ -21,11 +21,11 @@ android {
         release {
             keyAlias 'Ervin'
             keyPassword '7235428'
-            storeFile file('keystore.jks')
+            storeFile rootProject.file('keystore.jks')
             storePassword '7235428'
         }
         debug {
-            storeFile file('debug.keystore')
+            storeFile rootProject.file('debug.keystore')
         }
     }
     compileSdkVersion 23
@@ -39,12 +39,14 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
         }
         debug {
             minifyEnabled false
+            debuggable true
+            jniDebuggable true
             signingConfig signingConfigs.debug
         }
     }
@@ -54,6 +56,10 @@ android {
     }
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
+    }
+    /*加入databinding*/
+    dataBinding {
+        enabled = true
     }
 }
 
@@ -81,8 +87,7 @@ dependencies {
     compile 'com.nineoldandroids:library:2.4.0'
     compile 'com.github.bumptech.glide:glide:3.6.1'
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-
-    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.4-SNAPSHOT'
-    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-SNAPSHOT'
+    /*debugCompile 'com.squareup.leakcanary:leakcanary-android:1.4-SNAPSHOT'
+            releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-SNAPSHOT'*/
     /*testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'*/
 }
