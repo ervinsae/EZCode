@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 
 import com.ervin.litepal.R;
 import com.ervin.litepal.databinding.ActivityProfileBinding;
+import com.ervin.litepal.model.User;
 
 /**
  * Created by Ervin on 2016/11/1.
@@ -18,6 +19,8 @@ public class ProfileActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
 
         ActivityProfileBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_profile);
+        User user = new User(0,"Ervin zhang");
+        binding.setUser(user);
 
     }
 }

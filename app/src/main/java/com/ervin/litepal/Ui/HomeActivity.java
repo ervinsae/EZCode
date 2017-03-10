@@ -83,6 +83,8 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener,L
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerlayout);
         menuList = (ListView) findViewById(R.id.menu_list);
         menuList.setOnItemClickListener(this);
+
+        ivAavatar.setOnClickListener(this);
     }
 
     @Override
