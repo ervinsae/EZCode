@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="user"
+            type="com.ervin.litepal.model.User"/>
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+        <include layout="@layout/toolbar_actionbar"/>
+        <com.ervin.litepal.ui.widget.CircleImageView
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:layout_width="85dp"
+            android:layout_height="85dp"
+            android:src="@{user.url}"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{user.name}"/>
+    </LinearLayout>
+</layout>

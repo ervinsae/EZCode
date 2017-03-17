@@ -10,13 +10,16 @@ import com.ervin.litepal.request.RequestBody;
 
 import java.util.List;
 
+import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 import rx.Observable;
@@ -68,4 +71,9 @@ public interface APIService {
 
     @GET("data/休息视频/" + 10 + "/{page}")
     Observable<VideoEntity> getVedioData(@Path("page") int page);
+
+    //上传文件
+    @Multipart
+    @POST("/upload")
+    Call<Void> upLoad(@Part("type") String type, @Part MultipartBody.Part file);
 }

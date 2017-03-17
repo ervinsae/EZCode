@@ -62,6 +62,11 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         initData();
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
+
     private void initData() {
         appListView.setLayoutManager(new LinearLayoutManager(getActivity()));
         swipeLayout.setOnRefreshListener(this);
@@ -121,6 +126,11 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                for(AppInfo appInfo : list){
                    subscriber.onNext(appInfo);
                }
+               /*
+               unsubscribe() 这个方法很重要，因为在 subscribe() 之后，
+               Observable 会持有 Subscriber 的引用，这个引用如果不能及时被释放，将有内存泄露的风险。
+               所以最好保持一个原则：要在不再使用的时候尽快在合适的地方（例如 onPause() onStop() 等方法中）调用 unsubscribe() 来解除引用关系，以避免内存泄露的发生。
+               */
                if (!subscriber.isUnsubscribed()){
                    subscriber.onCompleted();
                }

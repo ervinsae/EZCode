@@ -51,7 +51,7 @@ public class MeizhiFragment extends Fragment {
 
     private MeizhiListAdapter adpter;
     private static List<Meizhis> mMeizhiList;
-    private int clickNum = 1;
+    private static int clickNum = 1;
 
 
     @Nullable
@@ -66,6 +66,7 @@ public class MeizhiFragment extends Fragment {
     }
 
     private void initView() {
+        queryData();
 
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
         mRecycleview.setLayoutManager(layoutManager);
@@ -74,15 +75,23 @@ public class MeizhiFragment extends Fragment {
         adpter.setOnMeizhiTouchListener(new MeizhiListener());
         mRecycleview.setAdapter(adpter);
 
-        refreshData(1);
+        //refreshData(1);
 
         mFab.setOnClickListener(v -> {
             refreshData(clickNum);
         });
     }
 
-    private void refreshData(int page) {
+    private void queryData() {
+        List<Meizhis> listData = DataSupport.findAll(Meizhis.class);
+        if(listData != null){
+            mMeizhiList = listData;
+        }
+    }
 
+    private void refreshData(int page) {
+        int rowsAffected = DataSupport.deleteAll(Meizhis.class);
+        Log.d("ervin","影响的行数：" + rowsAffected);
         Observable.zip(GetGankApi.getMeizhiData(page),GetGankApi.getVideoData(page),this::mergeDesc)//zip操作符是把两个observable提交的结果，严格按照顺序进行合并，作为参数去调用第三个方法
                 .map(meizhiEntity -> meizhiEntity.results)//map转换类型操作符，将返回的MeizhiEntity类型的数据转成List<Meizhis>类型
                 .flatMap(Observable::from)//flatmap输出一个一对多的数据，它输出的Observable对象才是Subcribe所真正想接收的数据,这里变形为：Observable.from(List<Meizhis>)，观察者将接收到一个个Meizhi对象。
@@ -167,7 +176,8 @@ public class MeizhiFragment extends Fragment {
     public void saveMeizhis(List<Meizhis> list){
         for(Meizhis meizhi : list){
             //if(DataSupport.findBySQL("select * from meizhis where url = ?"+ meizhi.url) != null) meizhi.save();
-
+            //DataSupport.saveAll(list);
+            meizhi.save();
         }
     }
 
