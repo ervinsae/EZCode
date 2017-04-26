@@ -1,26 +1,24 @@
 package com.ervin.litepal.ui.fragment;
 
-import android.animation.FloatEvaluator;
-import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.daasuu.ei.Ease;
-import com.daasuu.ei.EasingInterpolator;
 import com.ervin.litepal.R;
 import com.ervin.litepal.ui.CategoryActivity;
 import com.ervin.litepal.ui.widget.CircleImageView;
@@ -32,8 +30,7 @@ import butterknife.ButterKnife;
  * Created by Ervin on 2016/3/18.
  */
 public class AboutFragment extends Fragment {
-    @Bind(R.id.lv)
-    ListView listView;
+
     @Bind(R.id.fab)
     FloatingActionButton fab;
 
@@ -50,6 +47,10 @@ public class AboutFragment extends Fragment {
     RelativeLayout header;
     @Bind(R.id.collapsing_toolbar_layout)
     CollapsingToolbarLayout mCollapsingToolbarLayout;
+    @Bind(R.id.tab_layout)
+    TabLayout tabLayout;
+    @Bind(R.id.pager)
+    ViewPager pager;
 
     @Nullable
     @Override
@@ -66,7 +67,7 @@ public class AboutFragment extends Fragment {
     }
 
     private void initData() {
-        listView.setAdapter(new AboutAdapter());
+        //listView.setAdapter(new AboutAdapter());
         fab.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), CategoryActivity.class);
             startActivity(intent);
@@ -74,17 +75,21 @@ public class AboutFragment extends Fragment {
 
         windowX = getActivity().getWindowManager().getDefaultDisplay().getWidth();
 
-        appbar.addOnOffsetChangedListener((appBarLayout,verticalOffset) -> {
-            Log.d("AboutFragment","scroll :" + verticalOffset);
-            Log.d("AboutFragment","header height :" + -header.getHeight());
-            if(verticalOffset <= -header.getHeight()){
+        appbar.addOnOffsetChangedListener((appBarLayout, verticalOffset) -> {
+            Log.d("AboutFragment", "scroll :" + verticalOffset);
+            Log.d("AboutFragment", "header height :" + -header.getHeight());
+            if (verticalOffset <= -header.getHeight()) {
                 //mCollapsingToolbarLayout.setTitle("Ervin");
                 toolbar.setTitle("Ervin");
-            }else{
+            } else {
                 //mCollapsingToolbarLayout.setTitle("About");
                 toolbar.setTitle("About");
             }
         });
+
+        pager.setAdapter(new TabPagerAdapter(getFragmentManager()));
+        tabLayout.setupWithViewPager(pager);
+
     }
 
     @Override
@@ -93,7 +98,37 @@ public class AboutFragment extends Fragment {
         ButterKnife.unbind(this);
     }
 
-    class AboutAdapter extends BaseAdapter {
+    class TabPagerAdapter extends FragmentStatePagerAdapter{
+
+        String[] title = {"全国","省市","地区"};
+        public TabPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            switch (position){
+                case 0:
+                    return new TabOneFragment();
+                case 1:
+                    return new TabTwoFragment();
+                case 2:
+                    return new TabThreeFragment();
+            }
+            return null;
+        }
+
+        @Override
+        public int getCount() {
+            return 3;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return title[position];
+        }
+    }
+    /*class AboutAdapter extends BaseAdapter {
 
         @Override
         public int getCount() {
@@ -129,14 +164,14 @@ public class AboutFragment extends Fragment {
             objectAnimator.setDuration(2500).setStartDelay(100 * position);
             objectAnimator.start();
 
-            /*ObjectAnimator objectAnimator1 = objectAnimator.ofInt(viewHolder.tv,"textSize",15,20);
+            *//*ObjectAnimator objectAnimator1 = objectAnimator.ofInt(viewHolder.tv,"textSize",15,20);
             AnimatorSet set = new AnimatorSet();
             set.play(objectAnimator).with(objectAnimator1);
-            set.start();*/
+            set.start();*//*
 
-            /*ViewPropertyAnimator animator = viewHolder.tv.animate();
+            *//*ViewPropertyAnimator animator = viewHolder.tv.animate();
             animator.translationX(0).setInterpolator(new AccelerateDecelerateInterpolator());
-            animator.setDuration(2500).setStartDelay(100 * position).start();*/
+            animator.setDuration(2500).setStartDelay(100 * position).start();*//*
 
             return convertView;
         }
@@ -148,5 +183,5 @@ public class AboutFragment extends Fragment {
                 tv = (TextView) view.findViewById(R.id.about_tv);
             }
         }
-    }
+    }*/
 }
