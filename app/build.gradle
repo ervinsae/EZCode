@@ -21,7 +21,7 @@ android {
         release {
             keyAlias 'Ervin'
             keyPassword '7235428'
-            storeFile rootProject.file('keystore.jks')
+            storeFile file('E:/Github/EZCode/keystore.jsk')
             storePassword '7235428'
         }
         debug {
@@ -88,6 +88,6 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:3.6.1'
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     /*debugCompile 'com.squareup.leakcanary:leakcanary-android:1.4-SNAPSHOT'
-            releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-SNAPSHOT'*/
+                releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-SNAPSHOT'*/
     /*testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'*/
 }

@@ -29,7 +29,7 @@ public class ModeFragment extends Fragment implements View.OnClickListener{
 
     private ImageView menuIcon;
     private TextView tvTitle;
-    private FragmentCallback mCallback;
+    private com.ervin.litepal.ui.fragment.FragmentCallback mCallback;
 
     private DragCardsView mDragCardsView;
     private CardsAdapter mCardAdapter;

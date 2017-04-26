@@ -46,7 +46,7 @@ import rx.subjects.PublishSubject;
 /**
  * Created by Ervin on 2015/11/19.
  */
-public class RetrofitTest extends BaseActivity implements View.OnClickListener{
+public class RetrofitTest extends com.ervin.litepal.ui.BaseActivity implements View.OnClickListener{
 
     @Bind(R.id.ref_get)
     TextView tv_ref_get;
@@ -214,7 +214,7 @@ public class RetrofitTest extends BaseActivity implements View.OnClickListener{
                 });
                 break;
             case R.id.test_kotlin:
-                startActivity(new Intent(this,KotlinActivity.class));
+                //startActivity(new Intent(this,KotlinActivity.class));
                 break;
         }
     }
