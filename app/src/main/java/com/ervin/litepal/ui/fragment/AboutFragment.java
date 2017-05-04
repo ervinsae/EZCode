@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -51,6 +52,10 @@ public class AboutFragment extends Fragment {
     TabLayout tabLayout;
     @Bind(R.id.pager)
     ViewPager pager;
+    @Bind(R.id.tv_title)
+    TextView tvTitle;
+    @Bind(R.id.iv_back)
+    ImageView ivBack;
 
     @Nullable
     @Override
@@ -80,10 +85,10 @@ public class AboutFragment extends Fragment {
             Log.d("AboutFragment", "header height :" + -header.getHeight());
             if (verticalOffset <= -header.getHeight()) {
                 //mCollapsingToolbarLayout.setTitle("Ervin");
-                toolbar.setTitle("Ervin");
+                tvTitle.setText("Ervin");
             } else {
                 //mCollapsingToolbarLayout.setTitle("About");
-                toolbar.setTitle("About");
+                tvTitle.setText("About");
             }
         });
 
@@ -98,16 +103,17 @@ public class AboutFragment extends Fragment {
         ButterKnife.unbind(this);
     }
 
-    class TabPagerAdapter extends FragmentStatePagerAdapter{
+    class TabPagerAdapter extends FragmentStatePagerAdapter {
 
-        String[] title = {"全国","省市","地区"};
+        String[] title = {"全国", "省市", "地区"};
+
         public TabPagerAdapter(FragmentManager fm) {
             super(fm);
         }
 
         @Override
         public Fragment getItem(int position) {
-            switch (position){
+            switch (position) {
                 case 0:
                     return new TabOneFragment();
                 case 1:
